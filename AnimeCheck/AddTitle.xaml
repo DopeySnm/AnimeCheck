@@ -1,0 +1,17 @@
+﻿<Window x:Class="AnimeCheck.AddTitle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AnimeCheck"
+        mc:Ignorable="d"
+        Title="AddTitle" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="Name" FontSize="20" HorizontalAlignment="Center" Margin="0,10,100,100" VerticalAlignment="Center"  Width="450" Height="40" Background="#AF000000"/>
+        <Button Content="Добавить для" Foreground="White" FontSize="15" HorizontalAlignment="Right" Margin="0,10,70,100" VerticalAlignment="Center" Width="150" Height="40" Background="#AF020000" Cursor="Hand" BorderBrush="Transparent"/>
+        <Button Content="Добавить Фильм" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="60,0,0,30" VerticalAlignment="Bottom" Width="200" Height="40"  Background="#AF000000" Cursor="Hand" BorderBrush="Transparent"/>
+        <Button Content="Добавить Сезон" Foreground="White" FontSize="15" HorizontalAlignment="Right" Margin="0,0,60,30" VerticalAlignment="Bottom" Width="200" Height="40" Background="#AF000000" Cursor="Hand" BorderBrush="Transparent"/>
+
+
+    </Grid>
+</Window>

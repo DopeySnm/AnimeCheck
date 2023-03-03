@@ -1,0 +1,72 @@
+﻿<Page x:Class="AnimeCheck.View.WatchedAnimePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AnimeCheck.View"     
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="WatchedAnimePage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="91"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="380"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="950"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="images/4.jpg"/>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <TextBlock Foreground="White" TextAlignment="Center" Text="Поиск:" FontSize="28" Background="#4C000000" Width="127"/>
+            <TextBox Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
+        </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="173*"/>
+                <RowDefinition Height="17*"/>
+            </Grid.RowDefinitions>
+            <TreeView x:Name="AnimeList" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3" Grid.RowSpan="2">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="825"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name = "nameTitle" Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
+                            <Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
+                            <Button DataContext="{Binding TitePart}" Grid.Column="2" x:Name="btnDelete" FontSize="15" Content="✖" Foreground="White" BorderBrush="#00000000" Background="#00000000" Click="btnDelete_Click"/>
+                        </Grid>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="856"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding PartName}" Foreground="White" Grid.Column="0"/>
+                                    <Button Grid.Column="2" DataContext="{Binding Title}" FontSize="15" Content="✖" Foreground="White" BorderBrush="#00000000" Background="#00000000" Click="Button_ClickSesons"/>
+                                </Grid>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" >
+            <Button Width="400" FontSize="25" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="400" FontSize="25" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="150" FontSize="25" Content="Удалить" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
+        </StackPanel>
+    </Grid>
+</Page>

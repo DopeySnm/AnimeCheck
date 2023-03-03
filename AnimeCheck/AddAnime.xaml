@@ -1,0 +1,51 @@
+﻿<Window x:Class="AnimeCheck.AddAnime"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AnimeCheck"
+        mc:Ignorable="d"
+        Title="AddAnime" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="Manual">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="images\2.jpg"/>
+        </Grid.Background>
+        <Button Content="Добавить в Просмотренные" Foreground="#FF23FF00" FontSize="15" HorizontalAlignment="Left" Margin="30,355,0,24" VerticalAlignment="Center" Width="200" Height="40" Click="AddWatched_Click" Background="#AF000000" Cursor="Hand" BorderBrush="Transparent"/>
+        <Button Content="Добавить в Смотрю сейчас" Foreground="#FF23FF00" FontSize="15" HorizontalAlignment="Center" Margin="296,355,296,24" VerticalAlignment="Center" Width="200" Height="40" Click="AddNowWatching_Click" Background="#AF000000" Cursor="Hand" BorderBrush="Transparent"/>
+        <Button Content="Добавить в Буду смотреть" Foreground="#FF23FF00" FontSize="15" HorizontalAlignment="Right" Margin="0,355,29,24" VerticalAlignment="Center" Width="200" Height="40" Click="AddWillWatch_Click" Background="#AF020000" Cursor="Hand" BorderBrush="Transparent"/>
+        <TextBlock Text=" Название" Foreground="#FF23FF00" FontSize="26" HorizontalAlignment="Left" Margin="30,90,0,0"  VerticalAlignment="Top" Width="131" Height="40" Background="#AF000000"/>
+        <TextBlock Text="Кол-во серий" Foreground="#FF23FF00" FontSize="18" HorizontalAlignment="Left" Margin="30,190,0,189"  VerticalAlignment="Center" Width="131" Height="40" Background="#AF000000"/>
+        <TextBlock Text="Продолжительность серии" Foreground="#FF23FF00" FontSize="15" HorizontalAlignment="Center" Margin="317,190,281,189"  VerticalAlignment="Center" Width="194" Height="40" Background="#AF000000"/>
+        <TextBox Name="Name" FontSize="25" Margin="166,90,205,0" VerticalAlignment="Top" Height="40" Background="#AF000000"/>
+        <TextBox Name="NumberEpisodes" FontSize="25" Margin="166,190,551,189" VerticalAlignment="Center" Height="40" Background="#AF000000"/>
+        <TextBox Name="EpisodeDuration" FontSize="25" Margin="520,206,201,204" VerticalAlignment="Center" Height="40" RenderTransformOrigin="0.908,0.4" Background="#AF000000"/>
+        <TextBlock HorizontalAlignment="Left"
+                   Height="31"
+                   Margin="10,10,0,0"
+                   TextWrapping="Wrap"
+                   Text="⮨"
+                   VerticalAlignment="Top"
+                   Width="29"
+                   RenderTransformOrigin="1,0.488"
+                   FontSize="29"
+                   Foreground="#FF23FF00"
+                   Cursor="Hand"
+                   PreviewMouseDown="ComeBack"/>
+        <TextBlock HorizontalAlignment="Left"
+                   Height="31"
+                   Margin="764,10,0,0"
+                   TextWrapping="Wrap"
+                   Text="✖"
+                   VerticalAlignment="Top"
+                   Width="26"
+                   RenderTransformOrigin="1,0.488"
+                   FontSize="20"
+                   Foreground="#FFFF2300"
+                   Cursor="Hand"
+                   PreviewMouseDown="Exit"/>
+    </Grid>
+</Window>
