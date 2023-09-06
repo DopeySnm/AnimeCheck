@@ -13,69 +13,24 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AnimeCheck.model;
 using AnimeCheck.ViewModel;
+using Newtonsoft.Json.Linq;
 
 namespace AnimeCheck.View
 {
     public partial class WatchedAnimePage : Page
     {
-        List<Anime> animeList;
         public WatchedAnimePage()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
             DataProcessing.ReadFile();
         }
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new AnimeViewModel();
-            //animeList = Anime.GetAnime();
-            //AnimeList.ItemsSource = animeList;
-        }
-
-        //Click="btnDelete_Click"
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            //Anime anime = (Anime)AnimeList.SelectedItem;
-            if (AnimeList.SelectedItem is Anime anime)
-            {
-                animeList.RemoveAll(x => x.id == anime.id);
-            }
-            else if (AnimeList.SelectedItem is Season season)
-            {
-                foreach (var item in animeList)
-                {
-                    for (int i = 0; i < item.Seasons.Count; i++)
-                    {
-                        if (item.Seasons[i].Equals(season))
-                        {
-                            item.Seasons.RemoveAt(i);
-                            break;
-                        }
-                    }
-                }
-            }
-            AnimeList.Items.Refresh();
-        }
-        private void btnLike_Click(object sender, RoutedEventArgs e)
-        {
-            Anime anime = (Anime)AnimeList.SelectedItem;
-            
-
-            AnimeList.Items.Refresh();
-        }
-        private void btnAddInWatchied_Click(object sender, RoutedEventArgs e)
-        {
-            Anime anime = (Anime)AnimeList.SelectedItem;
-
-
-            AnimeList.Items.Refresh();
-        }
-        private void btnAddInWatchingNow_Click(object sender, RoutedEventArgs e)
-        {
-            Anime anime = (Anime)AnimeList.SelectedItem;
-
-
-            AnimeList.Items.Refresh();
+            var anime = Anime.GetAnime();
+            string storingValueInSearchString = "";
+            DataContext = new AnimeViewModel(storingValueInSearchString, anime);
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

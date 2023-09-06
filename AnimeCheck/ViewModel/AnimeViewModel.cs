@@ -10,52 +10,76 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using AnimeCheck.Commands;
+using System.Windows.Controls;
 
 namespace AnimeCheck.ViewModel
 {
-    internal class AnimeViewModel : DependencyObject
+    internal class AnimeViewModel : ViewModelBase // DependencyObject
     {
         public ICommand DeleteAnimeCommand { get; }
 
+        //public string FilterText
+        //{
+        //    get { return (string)GetValue(FilterTextProperty); }
+        //    set { SetValue(FilterTextProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty FilterTextProperty =
+        //    DependencyProperty.Register("FilterText", typeof(string), typeof(AnimeViewModel), new PropertyMetadata("", FilterText_Chenge));
+
+        //public ICollectionView Items
+        //{
+        //    get { return (ICollectionView)GetValue(ItemsProperty); }
+        //    set { SetValue(ItemsProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty ItemsProperty =
+        //    DependencyProperty.Register("Items", typeof(ICollectionView), typeof(AnimeViewModel), new PropertyMetadata(null));
+
+        private string filterText;
+
         public string FilterText
         {
-            get { return (string)GetValue(FilterTextProperty); }
-            set { SetValue(FilterTextProperty, value); }
+            get { return filterText; }
+            set 
+            { 
+                Set(ref filterText, value);
+                //onPropertyChanged();
+                Items.Filter = null;
+                Items.Filter = FilterAnime;
+            }
         }
 
-        public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterText", typeof(string), typeof(AnimeViewModel), new PropertyMetadata("", FilterText_Chenge));
+        private ICollectionView items;
 
         public ICollectionView Items
         {
-            get { return (ICollectionView)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            get { return items; }
+            set { Set(ref items, value); }
         }
-
-        public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(ICollectionView), typeof(AnimeViewModel), new PropertyMetadata(null));
-
 
         public static Anime SelectedAnime { get; set; }
 
         public static Season1 SelectedSeason { get; set; }
 
-        public AnimeViewModel()
+
+        public AnimeViewModel(string storingValueInSearchString, List<Anime> anime)
         {
-            Items = CollectionViewSource.GetDefaultView(Anime.GetAnime());
+            Items = CollectionViewSource.GetDefaultView(anime);
             Items.Filter = FilterAnime;
             DeleteAnimeCommand = new CommandDeleteAnime(Items);
+            FilterText = storingValueInSearchString;
         }
 
-        private static void FilterText_Chenge(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var current = d as AnimeViewModel;
-            if (current != null)
-            {
-                current.Items.Filter = null;
-                current.Items.Filter = current.FilterAnime;
-            }
-        }
+        //private static void FilterText_Chenge(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    var current = d as AnimeViewModel;
+        //    if (current != null)
+        //    {
+        //        current.Items.Filter = null;
+        //        current.Items.Filter = current.FilterAnime;
+        //    }
+        //}
 
         private bool FilterAnime(object obj)
         {

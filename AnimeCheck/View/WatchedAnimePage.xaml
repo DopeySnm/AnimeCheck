@@ -35,7 +35,7 @@
                 <RowDefinition Height="173*"/>
                 <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
-            <TreeView x:Name="AnimeList" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" SelectedItemChanged="TreeView_OnSelectedItemChanged" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
+            <TreeView x:Name="AnimeList" ItemsSource="{Binding Items}" SelectedItemChanged="TreeView_OnSelectedItemChanged" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
                 <TreeView.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
                       Color="#4C00FF04" />
@@ -73,10 +73,10 @@
             </TreeView>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
-            <Button Width="50" Click="btnLike_Click" FontSize="25" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="380" Click="btnAddInWatchied_Click" FontSize="25" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="380" Click="btnAddInWatchingNow_Click" FontSize="25" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="145" Command="{Binding Path=DeleteAnimeCommand, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Content="Удалить" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="50" FontSize="25" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="380" FontSize="25" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="380" FontSize="25" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="145" Command="{Binding Path=DeleteAnimeCommand}" FontSize="25" Content="Удалить" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
         </StackPanel>
     </Grid>
 </Page>
