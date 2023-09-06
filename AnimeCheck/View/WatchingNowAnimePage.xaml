@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="WatchingNowAnimePage">
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="91"/>
@@ -40,18 +40,20 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
                             <Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
-                            <Button Grid.Column="2" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
+                            <Button Click="btnDelete_Click" IsEnabled="{Binding Path=IsSelected, 
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}}" Grid.Column="2" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
                         </Grid>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
                                 <Grid >
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="856"/>
+                                        <ColumnDefinition Width="805"/>
+                                        <ColumnDefinition Width="50"/>
                                         <ColumnDefinition Width="50"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding Title}" Foreground="White" Grid.Column="0"/>
                                     <Button Grid.Column="1" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
-                                    <!--<Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>-->
+                                    <Button Grid.Column="2" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>

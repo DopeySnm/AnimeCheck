@@ -80,18 +80,23 @@
     <Compile Include="AddTitle.xaml.cs">
       <DependentUpon>AddTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CommandDeleteAnime.cs" />
     <Compile Include="DataProcessing.cs" />
-    <Compile Include="Film.cs">
+    <Compile Include="model\Anime.cs" />
+    <Compile Include="model\Film.cs">
       <DependentUpon>TitlePart.cs</DependentUpon>
     </Compile>
     <Compile Include="FindAnime.cs" />
-    <Compile Include="Season.cs">
+    <Compile Include="model\Season.cs">
       <DependentUpon>TitlePart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Title.cs" />
-    <Compile Include="TitlePart.cs">
+    <Compile Include="model\Season1.cs" />
+    <Compile Include="model\Title.cs" />
+    <Compile Include="model\TitlePart.cs">
       <DependentUpon>Title.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AnimeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WatchedAnimeViewModel.cs" />
@@ -187,7 +192,9 @@
   <ItemGroup>
     <Resource Include="View\images\5.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="resources\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Titles.json" />
   </ItemGroup>

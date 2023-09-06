@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AnimeCheck.View"     
+      xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:AnimeCheck.View" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="WatchedAnimePage">
@@ -27,35 +28,43 @@
         </Grid.Background>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
             <TextBlock Foreground="White" TextAlignment="Center" Text="Поиск:" FontSize="28" Background="#4C000000" Width="127"/>
-            <TextBox Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
+            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="173*"/>
                 <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
-            <TreeView x:Name="AnimeList" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3" Grid.RowSpan="2">
+            <TreeView x:Name="AnimeList" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" SelectedItemChanged="TreeView_OnSelectedItemChanged" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                      Color="#4C00FF04" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                      Color="#4C00FF04" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                      Color="#4C00FF04" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                      Color="#4C00FF04" />
+                </TreeView.Resources>
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Seasons}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="825"/>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name = "nameTitle" Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
-                            <Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
-                            <Button DataContext="{Binding TitePart}" Grid.Column="2" x:Name="btnDelete" FontSize="15" Content="✖" Foreground="White" BorderBrush="#00000000" Background="#00000000" Click="btnDelete_Click"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
                         </Grid>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="856"/>
+                                        <ColumnDefinition Width="805"/>
+                                        <ColumnDefinition Width="50"/>
                                         <ColumnDefinition Width="50"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding PartName}" Foreground="White" Grid.Column="0"/>
-                                    <Button Grid.Column="2" DataContext="{Binding Title}" FontSize="15" Content="✖" Foreground="White" BorderBrush="#00000000" Background="#00000000" Click="Button_ClickSesons"/>
+                                    <TextBlock Text="{Binding Title}" Foreground="White" Grid.Column="0"/>
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
@@ -63,10 +72,11 @@
                 </TreeView.ItemTemplate>
             </TreeView>
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" >
-            <Button Width="400" FontSize="25" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="400" FontSize="25" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="150" FontSize="25" Content="Удалить" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+            <Button Width="50" Click="btnLike_Click" FontSize="25" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="380" Click="btnAddInWatchied_Click" FontSize="25" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="380" Click="btnAddInWatchingNow_Click" FontSize="25" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Width="145" Command="{Binding Path=DeleteAnimeCommand, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Content="Удалить" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
         </StackPanel>
     </Grid>
 </Page>

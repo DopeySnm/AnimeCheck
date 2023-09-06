@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace AnimeCheck.View
     /// </summary>
     public partial class WatchingNowAnimePage : Page
     {
+        List<Anime> animeList;
         public WatchingNowAnimePage()
         {
             InitializeComponent();
@@ -28,16 +30,11 @@ namespace AnimeCheck.View
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {         
-            List<Title> titles = new List<Title>();
-            //foreach (var title in DataProcessing.TitleList)
-            //{
-            //    if(title.WatchedParts.Count>0)
-            //        titles.Add(title);
-            //}
-            List<Anime> animeList = new List<Anime>()
+            animeList = new List<Anime>()
             {
                 new Anime
                 {
+                    id = 1,
                     Name = "Атака Титанов",
                     Seasons = new List<Season>
                     {
@@ -47,6 +44,7 @@ namespace AnimeCheck.View
                 },
                 new Anime
                 {
+                    id = 2,
                     Name = "Убийца Акаме",
                     Seasons = new List<Season>
                     {
@@ -55,6 +53,7 @@ namespace AnimeCheck.View
                 },
                 new Anime
                 {
+                    id = 3,
                     Name="Берсерк",
                     Seasons = new List<Season>
                     {
@@ -65,8 +64,17 @@ namespace AnimeCheck.View
             };
             AnimeList.ItemsSource = animeList;
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Anime anime = (Anime)AnimeList.SelectedItem;
+            animeList.RemoveAll(x => x.id == anime.id);
+            AnimeList.Items.Refresh();
+        }
+
         public class Anime
         {
+            public int id { get; set; }
             public string Name { get; set; }
             public List<Season> Seasons { get; set; }
             public Anime()
@@ -74,6 +82,7 @@ namespace AnimeCheck.View
                 Seasons = new List<Season>();
             }
         }
+
         public class Season
         {
             public string Title { get; set; }

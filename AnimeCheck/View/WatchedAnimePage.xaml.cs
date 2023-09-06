@@ -11,11 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AnimeCheck.model;
+using AnimeCheck.ViewModel;
 
 namespace AnimeCheck.View
 {
     public partial class WatchedAnimePage : Page
     {
+        List<Anime> animeList;
         public WatchedAnimePage()
         {
             InitializeComponent();
@@ -24,25 +27,67 @@ namespace AnimeCheck.View
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Title> titles = DataProcessing.TitleList.Where(x => x.WatchedParts.Count > 0).ToList();
-            //foreach (var title in DataProcessing.TitleList)
-            //{
-            //    if (title.WatchedParts.Count > 0)
-            //        titles.Add(title);
-            //}
-            AnimeList.ItemsSource = titles;
+            DataContext = new AnimeViewModel();
+            //animeList = Anime.GetAnime();
+            //AnimeList.ItemsSource = animeList;
         }
+
+        //Click="btnDelete_Click"
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn)
+            //Anime anime = (Anime)AnimeList.SelectedItem;
+            if (AnimeList.SelectedItem is Anime anime)
             {
-                DataProcessing.TitleList.Remove((Title)btn.DataContext);
+                animeList.RemoveAll(x => x.id == anime.id);
             }
-            MainWindow_Loaded(sender,e);
+            else if (AnimeList.SelectedItem is Season season)
+            {
+                foreach (var item in animeList)
+                {
+                    for (int i = 0; i < item.Seasons.Count; i++)
+                    {
+                        if (item.Seasons[i].Equals(season))
+                        {
+                            item.Seasons.RemoveAt(i);
+                            break;
+                        }
+                    }
+                }
+            }
+            AnimeList.Items.Refresh();
         }
-        private void Button_ClickSesons(object sender, RoutedEventArgs e)
+        private void btnLike_Click(object sender, RoutedEventArgs e)
         {
+            Anime anime = (Anime)AnimeList.SelectedItem;
+            
 
+            AnimeList.Items.Refresh();
+        }
+        private void btnAddInWatchied_Click(object sender, RoutedEventArgs e)
+        {
+            Anime anime = (Anime)AnimeList.SelectedItem;
+
+
+            AnimeList.Items.Refresh();
+        }
+        private void btnAddInWatchingNow_Click(object sender, RoutedEventArgs e)
+        {
+            Anime anime = (Anime)AnimeList.SelectedItem;
+
+
+            AnimeList.Items.Refresh();
+        }
+
+        private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.NewValue is Anime anime)
+            {
+                AnimeViewModel.SelectedAnime = (Anime)e.NewValue;
+            }
+            else if (e.NewValue is Season1 season)
+            {
+                AnimeViewModel.SelectedSeason = (Season1)e.NewValue;
+            }
         }
     }
 }
