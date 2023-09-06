@@ -1,4 +1,4 @@
-﻿using AnimeCheck.model;
+﻿using AnimeCheck.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

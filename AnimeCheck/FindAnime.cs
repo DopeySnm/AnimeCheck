@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using AnimeCheck.Model;
+
 
 namespace AnimeCheck
 {
@@ -6,13 +9,7 @@ namespace AnimeCheck
     {
         public List<Title> Run(string str)
         {
-            List<Title> resList = new List<Title>();
-            foreach (var title in DataProcessing.TitleList)
-            {
-                if (title.Name.ToLower().Contains(str.ToLower())) resList.Add(title);
-            }
-
-            return resList;
+            return DataProcessing.TitleList.Where(title => title.Name.ToLower().Contains(str.ToLower())).ToList();
         }
     }
 }

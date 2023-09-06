@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AnimeCheck.model;
+using AnimeCheck.Model;
 using AnimeCheck.ViewModel;
 using Newtonsoft.Json.Linq;
 
