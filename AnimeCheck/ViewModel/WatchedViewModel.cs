@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace AnimeCheck.ViewModel
 {
-    internal class AnimeViewModel : ViewModelBase // DependencyObject
+    internal class WatchedViewModel : ViewModelBase // DependencyObject
     {
         public ICommand DeleteAnimeCommand { get; }
 
@@ -44,7 +44,6 @@ namespace AnimeCheck.ViewModel
             set 
             { 
                 Set(ref filterText, value);
-                //onPropertyChanged();
                 Items.Filter = null;
                 Items.Filter = FilterAnime;
             }
@@ -58,12 +57,12 @@ namespace AnimeCheck.ViewModel
             set { Set(ref items, value); }
         }
 
-        public static Anime SelectedAnime { get; set; }
+        public static Title SelectedAnime { get; set; }
 
-        public static Season1 SelectedSeason { get; set; }
+        public static TitlePart SelectedSeason { get; set; }
 
 
-        public AnimeViewModel(string storingValueInSearchString, List<Anime> anime)
+        public WatchedViewModel(string storingValueInSearchString, List<Title> anime)
         {
             Items = CollectionViewSource.GetDefaultView(anime);
             Items.Filter = FilterAnime;
@@ -83,7 +82,7 @@ namespace AnimeCheck.ViewModel
 
         private bool FilterAnime(object obj)
         {
-            Anime current = obj as Anime;
+            Title current = obj as Title;
             if (!string.IsNullOrWhiteSpace(FilterText) && current != null && !ContainsCaseInsensitive(current.Name, FilterText))
             {
                 return false;

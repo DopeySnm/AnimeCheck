@@ -47,12 +47,10 @@
                       Color="#4C00FF04" />
                 </TreeView.Resources>
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Seasons}">
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=TitleParts}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="825"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="900"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
                         </Grid>
@@ -60,11 +58,9 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="805"/>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="880"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Title}" Foreground="White" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>

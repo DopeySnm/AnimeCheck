@@ -28,21 +28,42 @@ namespace AnimeCheck.View
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var anime = Anime.GetAnime();
+            TitlePart titlePartTest = new TitlePart(1, 1, "1 сезон");
+            Title titleTest = new Title(1, "Тородора");
+            titleTest.TitleParts.Add(titlePartTest);
+            var title = new List<Title>() { titleTest };
             string storingValueInSearchString = "";
-            DataContext = new AnimeViewModel(storingValueInSearchString, anime);
+            DataContext = new WatchedViewModel(storingValueInSearchString, title);
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (e.NewValue is Anime anime)
+            if (e.NewValue is Title title)
             {
-                AnimeViewModel.SelectedAnime = (Anime)e.NewValue;
+                WatchedViewModel.SelectedAnime = (Title)e.NewValue;
             }
-            else if (e.NewValue is Season1 season)
+            else if (e.NewValue is TitlePart titlePart)
             {
-                AnimeViewModel.SelectedSeason = (Season1)e.NewValue;
+                var item = (TreeViewItem)e.OriginalSource;
+                if (item != null)
+                {
+                    ItemsControl parent = GetSelectedTreeViewItemParent(item);
+
+                    TreeViewItem treeitem = parent as TreeViewItem;
+                    string MyValue = treeitem.Header.ToString();
+                }
+                WatchedViewModel.SelectedSeason = (TitlePart)e.NewValue;
             }
+        }
+        public ItemsControl GetSelectedTreeViewItemParent(TreeViewItem item)
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(item);
+            while (!(parent is TreeViewItem || parent is TreeView))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return parent as ItemsControl;
         }
     }
 }

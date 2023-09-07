@@ -20,8 +20,8 @@ namespace AnimeCheck.Commands
 
         public override void Execute(object parameter)
         {
-            Anime.StaticAnime.Remove(AnimeViewModel.SelectedAnime);
-            AnimeViewModel.SelectedAnime = null;
+            //удаление
+            WatchedViewModel.SelectedAnime = null;
             items.Refresh();
         }
     }
