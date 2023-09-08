@@ -21,7 +21,7 @@ namespace AnimeCheck.Commands
         public override void Execute(object parameter)
         {
             //todo сделать удаление из репозитория
-            WatchedViewModel.SelectedAnime = null;
+            ViewedViewModel.SelectedAnime = null;
             items.Refresh();
         }
     }

@@ -17,9 +17,9 @@ using Newtonsoft.Json.Linq;
 
 namespace AnimeCheck.View
 {
-    public partial class WatchedAnimePage : Page
+    public partial class ViewedPage : Page
     {
-        public WatchedAnimePage()
+        public ViewedPage()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
@@ -28,18 +28,18 @@ namespace AnimeCheck.View
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new WatchedViewModel();
+            
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (e.NewValue is Title title)
             {
-                WatchedViewModel.SelectedAnime = (Title)e.NewValue;
+                ViewedViewModel.SelectedAnime = (Title)e.NewValue;
             }
             else if (e.NewValue is TitlePart titlePart)
             {
-                WatchedViewModel.SelectedSeason = (TitlePart)e.NewValue;
+                ViewedViewModel.SelectedSeason = (TitlePart)e.NewValue;
             }
         }
     }

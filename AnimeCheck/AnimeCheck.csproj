@@ -90,7 +90,7 @@
     <Compile Include="Model\ObjectModels\TitlePart.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="Model\TitleRepo.cs" />
-    <Compile Include="ViewModel\WatchedViewModel.cs" />
+    <Compile Include="ViewModel\ViewedViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddAnimePage.xaml.cs">
@@ -99,8 +99,8 @@
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\WatchedAnimePage.xaml.cs">
-      <DependentUpon>WatchedAnimePage.xaml</DependentUpon>
+    <Compile Include="View\ViewedPage.xaml.cs">
+      <DependentUpon>ViewedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WatchingNowAnimePage.xaml.cs">
       <DependentUpon>WatchingNowAnimePage.xaml</DependentUpon>
@@ -130,7 +130,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\WatchedAnimePage.xaml">
+    <Page Include="View\ViewedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

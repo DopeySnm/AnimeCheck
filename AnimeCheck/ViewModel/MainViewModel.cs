@@ -15,7 +15,7 @@ namespace AnimeCheck.ViewModel
         private Page Home = new HomePage();
         private Page WillWatchAnime = new WillWatchAnimePage();
         private Page WatchingNowAnime = new WatchingNowAnimePage();
-        private Page WatchedAnime = new WatchedAnimePage();
+        private Page Viewed = new ViewedPage();
         private Page AddAnime = new AddAnimePage();
         private Page _CurPage = new HomePage();
         public Page CurPage
@@ -44,11 +44,11 @@ namespace AnimeCheck.ViewModel
                 return new RelayCommand(() => CurPage = WatchingNowAnime);
             }
         }
-        public ICommand OpenWatchedAnime
+        public ICommand OpenViewed
         {
             get
             {
-                return new RelayCommand(() => CurPage = WatchedAnime);
+                return new RelayCommand(() => CurPage = Viewed);
             }
         }
         public ICommand OpenAddAnime

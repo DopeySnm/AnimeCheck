@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace AnimeCheck.ViewModel
 {
-    internal class WatchedViewModel : ViewModelBase // DependencyObject
+    internal class ViewedViewModel : ViewModelBase // DependencyObject
     {
         public ICommand DeleteAnimeCommand { get; }
 
@@ -53,7 +53,7 @@ namespace AnimeCheck.ViewModel
             return title;
         }
 
-        public WatchedViewModel()
+        public ViewedViewModel()
         {
             //todo получаеть запоминаемый текст в поиске
             var storingValueInSearchString = "";
