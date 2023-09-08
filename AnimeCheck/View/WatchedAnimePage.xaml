@@ -4,10 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
-      xmlns:local="clr-namespace:AnimeCheck.View" 
+      xmlns:local="clr-namespace:AnimeCheck.View"
+      xmlns:vm="clr-namespace:AnimeCheck.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="WatchedAnimePage">
+    <Page.DataContext>
+        <vm:WatchedViewModel />
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="91"/>
@@ -68,11 +72,19 @@
                 </TreeView.ItemTemplate>
             </TreeView>
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
-            <Button Width="50" FontSize="25" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="380" FontSize="25" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="380" FontSize="25" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Width="145" Command="{Binding Path=DeleteAnimeCommand}" FontSize="25" Content="Удалить" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
-        </StackPanel>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+            <Button FontSize="25" Grid.Column="0" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button FontSize="25" Grid.Column="1" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button FontSize="25" Grid.Column="2" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button FontSize="25" Grid.Column="3" Content="Доавить" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Command="{Binding Path=DeleteAnimeCommand}" Grid.Column="4" Content="Удалить" FontSize="25" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
+        </Grid>
     </Grid>
 </Page>

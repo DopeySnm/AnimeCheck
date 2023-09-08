@@ -28,12 +28,7 @@ namespace AnimeCheck.View
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            TitlePart titlePartTest = new TitlePart(1, 1, "1 сезон");
-            Title titleTest = new Title(1, "Тородора");
-            titleTest.TitleParts.Add(titlePartTest);
-            var title = new List<Title>() { titleTest };
-            string storingValueInSearchString = "";
-            DataContext = new WatchedViewModel(storingValueInSearchString, title);
+            DataContext = new WatchedViewModel();
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -44,26 +39,8 @@ namespace AnimeCheck.View
             }
             else if (e.NewValue is TitlePart titlePart)
             {
-                var item = (TreeViewItem)e.OriginalSource;
-                if (item != null)
-                {
-                    ItemsControl parent = GetSelectedTreeViewItemParent(item);
-
-                    TreeViewItem treeitem = parent as TreeViewItem;
-                    string MyValue = treeitem.Header.ToString();
-                }
                 WatchedViewModel.SelectedSeason = (TitlePart)e.NewValue;
             }
-        }
-        public ItemsControl GetSelectedTreeViewItemParent(TreeViewItem item)
-        {
-            DependencyObject parent = VisualTreeHelper.GetParent(item);
-            while (!(parent is TreeViewItem || parent is TreeView))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            return parent as ItemsControl;
         }
     }
 }
