@@ -84,7 +84,7 @@
             <Button FontSize="25" Grid.Column="1" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
             <Button FontSize="25" Grid.Column="2" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
             <Button FontSize="25" Grid.Column="3" Content="Доавить" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Command="{Binding Path=DeleteAnimeCommand}" Grid.Column="4" Content="Удалить" FontSize="25" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Command="{Binding Path=DeleteAnimeCommand}" CommandParameter="{Binding}" Grid.Column="4" Content="Удалить" FontSize="25" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
         </Grid>
     </Grid>
 </Page>
