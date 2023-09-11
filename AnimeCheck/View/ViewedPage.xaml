@@ -24,15 +24,93 @@
             <Setter Property="Background" Value="#00000000"/>
             <Setter Property="FontSize" Value="25"/>
         </Style>
-        <Style x:Key="ButtonAny" TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
+        <Style x:Key="BaseButtonAny" TargetType="Button">
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="BorderBrush" Value="#00000000"/>
             <Setter Property="Background" Value="#4C000000"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="ButtonAdd" BasedOn="{StaticResource ButtonAny}" TargetType="Button">
-            <Setter Property="Foreground" Value="#FF7DFF00"/>
+        <Style x:Key="ButtonAny" TargetType="Button" BasedOn="{StaticResource BaseButtonAny}" >
+            <Setter Property="Foreground" Value="#FF9D9999"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            BorderThickness="1"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#30000000" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Margin" Value="2,2,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonDelete" TargetType="Button" BasedOn="{StaticResource BaseButtonAny}">
+            <Setter Property="Foreground" Value="#FFA70000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                                BorderThickness="1"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Red"/>
+                                <Setter Property="Background" Value="#30000000" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Margin" Value="2,2,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonAdd" TargetType="Button" BasedOn="{StaticResource BaseButtonAny}">
+            <Setter Property="Foreground" Value="#FF51A500"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                                BorderThickness="1"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF02F702"/>
+                                <Setter Property="Background" Value="#30000000" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Margin" Value="2,2,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Page.Resources>
     <Grid>
@@ -53,10 +131,14 @@
         <Grid.Background>
             <ImageBrush ImageSource="images/4.jpg"/>
         </Grid.Background> 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#4C000000" Grid.Column="1">
-            <TextBlock Style="{StaticResource TextBlockAny}" TextAlignment="Center" VerticalAlignment="Center" Text="Поиск" Width="120"/>
-            <TextBox Style="{StaticResource TextBoxAny}" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="700" FontSize="25"/>
-            <Button Grid.Column="3" Content="Добавить" Style="{StaticResource ButtonAdd}" Background="#00000000" Width="130"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <Grid Background="#4C000000">
+                <TextBlock Style="{StaticResource TextBlockAny}" TextAlignment="Center" VerticalAlignment="Center" Text="Поиск" Width="120"/>
+            </Grid>
+            <Grid Background="#4C000000">
+                <TextBox Style="{StaticResource TextBoxAny}" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="700" FontSize="25"/>
+            </Grid>
+            <Button Grid.Column="3" Content="Добавить" Style="{StaticResource ButtonAdd}" Width="130"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="3">
             <TreeView x:Name="AnimeList" ItemsSource="{Binding Items}" SelectedItemChanged="TreeView_OnSelectedItemChanged" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
@@ -84,7 +166,7 @@
                                     <TextBox Style="{StaticResource TextBoxAny}" Background="#4C000000" FontSize="20"/>
                                     <TextBlock Style="{StaticResource TextBlockAny}" Text="Количество серий" FontSize="20"/>
                                     <TextBox Style="{StaticResource TextBoxAny}" Background="#4C000000" FontSize="20"/>
-                                    <Button Style="{StaticResource ButtonAdd}" Content="Добавить" Background="#4C000000" FontSize="20"/>
+                                    <Button Style="{StaticResource ButtonAdd}" Content="Добавить" FontSize="20"/>
                                 </StackPanel>
                             </Expander>
                         </Grid>
@@ -112,7 +194,7 @@
             <Button Style="{StaticResource ButtonAny}" Grid.Column="0" Content="♥"/>
             <Button Style="{StaticResource ButtonAny}" Grid.Column="1" Content="Доавить в буду смотреть"/>
             <Button Style="{StaticResource ButtonAny}" Grid.Column="2" Content="Доавить в смотрю сейчас"/>
-            <Button Command="{Binding Path=DeleteAnimeCommand}" CommandParameter="{Binding SelectedAnime}" Style="{StaticResource ButtonAny}" Grid.Column="4" Content="Удалить" Foreground="Red"/>
+            <Button Command="{Binding Path=DeleteAnimeCommand}" CommandParameter="{Binding SelectedAnime}" Style="{StaticResource ButtonDelete}" Grid.Column="4" Content="Удалить" />
         </Grid>
     </Grid>
 </Page>
