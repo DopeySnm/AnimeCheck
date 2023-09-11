@@ -1,27 +1,24 @@
-﻿using AnimeCheck.Model;
-using AnimeCheck.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Data;
 
 namespace AnimeCheck.Commands
 {
-    public class CommandDeleteAnime : CommandBase
+    internal class CommandAddToViewed : CommandBase
     {
         private ICollectionView items;
-        public CommandDeleteAnime(ICollectionView items)
+
+        public CommandAddToViewed(ICollectionView items)
         {
             this.items = items;
         }
 
         public override void Execute(object parameter)
         {
-            //todo сделать удаление из репозитория
-            //ViewedViewModel.SelectedAnime = null;
+
             items.Refresh();
         }
     }

@@ -12,12 +12,35 @@
     <Page.DataContext>
         <vm:ViewedViewModel />
     </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="TextBoxAny" TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#00000000"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+        </Style>
+        <Style x:Key="TextBlockAny" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#00000000"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="ButtonAny" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderBrush" Value="#00000000"/>
+            <Setter Property="Background" Value="#4C000000"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="ButtonAdd" BasedOn="{StaticResource ButtonAny}" TargetType="Button">
+            <Setter Property="Foreground" Value="#FF7DFF00"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="91"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition Height="380"/>
+            <RowDefinition Height="390"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="25"/>
@@ -29,34 +52,41 @@
         </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="images/4.jpg"/>
-        </Grid.Background>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-            <TextBlock Foreground="White" TextAlignment="Center" Text="Поиск:" FontSize="28" Background="#4C000000" Width="127"/>
-            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
+        </Grid.Background> 
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#4C000000" Grid.Column="1">
+            <TextBlock Style="{StaticResource TextBlockAny}" TextAlignment="Center" VerticalAlignment="Center" Text="Поиск" Width="120"/>
+            <TextBox Style="{StaticResource TextBoxAny}" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="700" FontSize="25"/>
+            <Button Grid.Column="3" Content="Добавить" Style="{StaticResource ButtonAdd}" Background="#00000000" Width="130"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="173*"/>
-                <RowDefinition Height="17*"/>
-            </Grid.RowDefinitions>
             <TreeView x:Name="AnimeList" ItemsSource="{Binding Items}" SelectedItemChanged="TreeView_OnSelectedItemChanged" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
                 <TreeView.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                      Color="#4C00FF04" />
+                      Color="#26FFFFFF" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
-                      Color="#4C00FF04" />
+                      Color="#26FFFFFF" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
-                      Color="#4C00FF04" />
+                      Color="#26FFFFFF" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
-                      Color="#4C00FF04" />
+                      Color="#26FFFFFF" />
                 </TreeView.Resources>
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Path=TitleParts}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="900"/>
+                                <ColumnDefinition Width="600"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource TextBlockAny}" Grid.Column="0"/>
+                            <Expander Header="Добавить" Foreground="White" Grid.Column="1" FontSize="25">
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource TextBlockAny}" Text="Название" FontSize="20"/>
+                                    <TextBox Style="{StaticResource TextBoxAny}" Background="#4C000000" FontSize="20"/>
+                                    <TextBlock Style="{StaticResource TextBlockAny}" Text="Количество серий" FontSize="20"/>
+                                    <TextBox Style="{StaticResource TextBoxAny}" Background="#4C000000" FontSize="20"/>
+                                    <Button Style="{StaticResource ButtonAdd}" Content="Добавить" Background="#4C000000" FontSize="20"/>
+                                </StackPanel>
+                            </Expander>
                         </Grid>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
@@ -64,7 +94,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="880"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
+                                    <TextBlock Style="{StaticResource TextBlockAny}" Text="{Binding Name}" Grid.Column="0"/>
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
@@ -75,16 +105,14 @@
         <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="320"/>
-                <ColumnDefinition Width="320"/>
-                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="385"/>
+                <ColumnDefinition Width="385"/>
                 <ColumnDefinition Width="130"/>
             </Grid.ColumnDefinitions>
-            <Button FontSize="25" Grid.Column="0" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button FontSize="25" Grid.Column="1" Content="Доавить в буду смотреть" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button FontSize="25" Grid.Column="2" Content="Доавить в смотрю сейчас" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button FontSize="25" Grid.Column="3" Content="Доавить" Foreground="White" BorderBrush="#00000000" Background="#4C000000"/>
-            <Button Command="{Binding Path=DeleteAnimeCommand}" CommandParameter="{Binding}" Grid.Column="4" Content="Удалить" FontSize="25" Foreground="Red" BorderBrush="#00000000" Background="#4C000000"/>
+            <Button Style="{StaticResource ButtonAny}" Grid.Column="0" Content="♥"/>
+            <Button Style="{StaticResource ButtonAny}" Grid.Column="1" Content="Доавить в буду смотреть"/>
+            <Button Style="{StaticResource ButtonAny}" Grid.Column="2" Content="Доавить в смотрю сейчас"/>
+            <Button Command="{Binding Path=DeleteAnimeCommand}" CommandParameter="{Binding SelectedAnime}" Style="{StaticResource ButtonAny}" Grid.Column="4" Content="Удалить" Foreground="Red"/>
         </Grid>
     </Grid>
 </Page>

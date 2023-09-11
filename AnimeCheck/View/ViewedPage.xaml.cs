@@ -35,7 +35,7 @@ namespace AnimeCheck.View
         {
             if (e.NewValue is Title title)
             {
-                ViewedViewModel.SelectedAnime = (Title)e.NewValue;
+                ViewedViewModel.selectedAnime = (Title)e.NewValue;
             }
             else if (e.NewValue is TitlePart titlePart)
             {
