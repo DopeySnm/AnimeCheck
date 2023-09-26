@@ -12,7 +12,11 @@ namespace AnimeCheck.ViewModel
     {
         public ICommand DeleteAnimeCommand { get; }
 
-        public ICommand OpenExpanderCommand { get; }
+        public ICommand AddToPlannedCommand { get; }
+
+        public ICommand AddToWatchCommand { get; }
+
+        public ICommand LikeCommand { get; }
 
         private string filterText;
         public string FilterText
@@ -85,13 +89,11 @@ namespace AnimeCheck.ViewModel
             Items = CollectionViewSource.GetDefaultView(anime);
             Items.Filter = FilterNameAnime;
             DeleteAnimeCommand = new CommandDeleteAnime(Items);
-            OpenExpanderCommand = new CommandOpenExpander(Items);
+            AddToPlannedCommand = new CommandAddToPlanned(Items);
+            AddToWatchCommand = new CommandAddToWatch(Items);
+            LikeCommand = new CommandLike(Items);
             FilterText = storingValueInSearchString;
         }
-        //private void Instance_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    onPropertyChanged(nameof(TextSelectedAnime));
-        //}
 
         private bool FilterNameAnime(object obj)
         {

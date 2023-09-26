@@ -22,7 +22,6 @@ namespace AnimeCheck.Commands
         {
             //todo MultiBinding
             //todo сделать удаление из репозитория
-            //ViewedViewModel.SelectedAnime = null;
             items.Refresh();
         }
     }

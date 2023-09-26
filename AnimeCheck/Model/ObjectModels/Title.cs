@@ -16,5 +16,10 @@ namespace AnimeCheck.Model
             _favorite = false;
             TitleParts = new List<TitlePart>();
         }
+
+        public void Like()
+        {
+            _favorite = !_favorite;
+        }
     }
 }
