@@ -39,7 +39,7 @@
                 <RowDefinition Height="173*"/>
                 <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
-            <TreeView x:Name="AnimeList" ItemsSource="{Binding Items}" SelectedItemChanged="TreeView_OnSelectedItemChanged" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
+            <TreeView x:Name="AnimeList" ItemsSource="{Binding Items}" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"><!-- SelectedItemChanged="TreeView_OnSelectedItemChanged"-->
                 <TreeView.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
                       Color="#4C00FF04" />

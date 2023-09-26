@@ -23,24 +23,11 @@ namespace AnimeCheck.View
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-            DataProcessing.ReadFile();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             
-        }
-
-        private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (e.NewValue is Title title)
-            {
-                ViewedViewModel.SelectedAnime = (Title)e.NewValue;
-            }
-            else if (e.NewValue is TitlePart titlePart)
-            {
-                ViewedViewModel.SelectedSeason = (TitlePart)e.NewValue;
-            }
         }
     }
 }

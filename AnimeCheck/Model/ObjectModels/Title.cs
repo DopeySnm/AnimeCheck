@@ -9,6 +9,8 @@ namespace AnimeCheck.Model
         private bool _favorite;
 
         public List<TitlePart> TitleParts { get; set; }
+        
+        public Title(){}
         public Title(int id, string name)
         {
             _id = id;

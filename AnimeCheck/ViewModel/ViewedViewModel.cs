@@ -47,7 +47,7 @@ namespace AnimeCheck.ViewModel
         private List<Title> TestData()
         {
             TitlePart titlePartTest = new TitlePart(1, 1, "1 сезон");
-            Title titleTest = new Title(1, "Тородора");
+            Title titleTest = new Title();
             titleTest.TitleParts.Add(titlePartTest);
             var title = new List<Title>() { titleTest };
             return title;
@@ -65,6 +65,16 @@ namespace AnimeCheck.ViewModel
             DeleteAnimeCommand = new CommandDeleteAnime(Items);
             FilterText = storingValueInSearchString;
         }
+
+        //private static void FilterText_Chenge(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    var current = d as AnimeViewModel;
+        //    if (current != null)
+        //    {
+        //        current.Items.Filter = null;
+        //        current.Items.Filter = current.FilterAnime;
+        //    }
+        //}
 
         private bool FilterAnime(object obj)
         {
