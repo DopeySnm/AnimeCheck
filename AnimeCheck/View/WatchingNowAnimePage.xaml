@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimeCheck.View"
+      xmlns:vm="clr-namespace:AnimeCheck.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="WatchingNowAnimePage">
+    
+    <Page.DataContext>
+        <vm:WatchNowViewModel />
+    </Page.DataContext>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -28,32 +33,37 @@
             <TextBlock Foreground="White" TextAlignment="Center" Text="Поиск:" FontSize="28" Background="#4C000000" Width="127"/>
             <TextBox Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
         </StackPanel>
-        <Grid Grid.Column="1" Grid.Row="3">
-            <TreeView x:Name="AnimeList" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
+          <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="173*"/>
+                <RowDefinition Height="17*"/>
+            </Grid.RowDefinitions>
+            <TreeView x:Name="AnimeList" ItemsSource="{Binding Titles}" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"><!-- SelectedItemChanged="TreeView_OnSelectedItemChanged"-->
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                      Color="#4C00FF04" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                      Color="#4C00FF04" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                      Color="#4C00FF04" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                      Color="#4C00FF04" />
+                </TreeView.Resources>
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Seasons}">
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Watch}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="825"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="900"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
-                            <Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
-                            <Button Click="btnDelete_Click" IsEnabled="{Binding Path=IsSelected, 
-                                    RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}}" Grid.Column="2" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
                         </Grid>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
-                                <Grid >
+                                <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="805"/>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="880"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Title}" Foreground="White" Grid.Column="0"/>
-                                    <Button Grid.Column="1" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
-                                    <Button Grid.Column="2" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
+                                    <TextBlock Text="{Binding Name}" Foreground="White" Grid.Column="0"/>
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>

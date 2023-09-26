@@ -2,15 +2,28 @@
 
 namespace AnimeCheck.Model
 {
-    public class TitleRepo
+    public static class TitleRepo
     {
-        private Executor _executor;
-        private List<Title> _titles;
-
-        public TitleRepo(Executor executor)
+        private static Executor _executor = new FileExecutor();
+        public static List<Title> Ttitles = _executor.GetTitles();
+        
+        public static List<Title> GetWithViewed()
         {
-            _executor = executor;
-            _titles = _executor.GetTitles();
+            return Ttitles.FindAll(title => title.Viewed.Count > 0);
+        }
+        public static List<Title> GetWithWatch()
+        {
+            return Ttitles.FindAll(title => title.Watch.Count > 0);;
+        }
+        public static List<Title> GetWithPlanned()
+        {
+            return Ttitles.FindAll(title => title.Planned.Count > 0);;
+        }
+
+        public static void AddTitle(Title title)
+        {
+            Ttitles.Add(title);
+            _executor.SaveTitles(Ttitles);
         }
     }
 }

@@ -47,8 +47,8 @@ namespace AnimeCheck.ViewModel
         private List<Title> TestData()
         {
             TitlePart titlePartTest = new TitlePart(1, 1, "1 сезон");
-            Title titleTest = new Title();
-            titleTest.TitleParts.Add(titlePartTest);
+            Title titleTest = new Title(123, "example");
+            titleTest.AddPart(titlePartTest);
             var title = new List<Title>() { titleTest };
             return title;
         }

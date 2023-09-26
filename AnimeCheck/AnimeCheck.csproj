@@ -86,6 +86,7 @@
     <Compile Include="DataProcessing.cs" />
     <Compile Include="FindAnime.cs" />
     <Compile Include="Model\Executor.cs" />
+    <Compile Include="Model\FileExecutor.cs" />
     <Compile Include="Model\ObjectModels\Title.cs" />
     <Compile Include="Model\ObjectModels\TitlePart.cs" />
     <Compile Include="Model\Status.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="ViewModel\ViewedViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\WatchNowViewModel.cs" />
     <Compile Include="View\AddAnimePage.xaml.cs">
       <DependentUpon>AddAnimePage.xaml</DependentUpon>
     </Compile>

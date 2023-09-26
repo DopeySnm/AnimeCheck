@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using AnimeCheck.Model;
 
 namespace AnimeCheck.ViewModel
 {
@@ -18,6 +19,7 @@ namespace AnimeCheck.ViewModel
         private Page Viewed = new ViewedPage();
         private Page AddAnime = new AddAnimePage();
         private Page _CurPage = new HomePage();
+        
         public Page CurPage
         {
             get { return _CurPage; }

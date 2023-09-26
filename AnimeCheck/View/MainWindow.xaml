@@ -14,9 +14,11 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
+    
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
+    
     <Window.Resources>
         <ControlTemplate x:Key="SlideMenuBtn" TargetType="Button">
             <Grid Name="Btn">
