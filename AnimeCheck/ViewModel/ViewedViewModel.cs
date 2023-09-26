@@ -26,13 +26,6 @@ namespace AnimeCheck.ViewModel
             }
         }
 
-        private bool isOpenExpanded;
-        public bool IsOpenExpanded
-        {
-            get { return isOpenExpanded; }
-            set { Set(ref isOpenExpanded, value); }
-        }
-
         private ICollectionView items;
         public ICollectionView Items
         {

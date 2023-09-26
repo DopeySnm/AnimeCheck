@@ -19,8 +19,6 @@ namespace AnimeCheck.View
             //DataContext = new ViewedViewModel();
         }
 
-
-
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             ViewedViewModel viewModel = DataContext as ViewedViewModel;
