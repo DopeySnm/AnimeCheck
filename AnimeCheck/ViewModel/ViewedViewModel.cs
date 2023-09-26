@@ -1,25 +1,24 @@
-﻿using AnimeCheck.Model;
+using AnimeCheck.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using GalaSoft.MvvmLight.Command;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using AnimeCheck.Commands;
-using System.Windows.Controls;
 
 namespace AnimeCheck.ViewModel
 {
-    internal class ViewedViewModel : ViewModelBase // DependencyObject
+    public class ViewedViewModel : ViewModelBase
     {
         public ICommand DeleteAnimeCommand { get; }
 
-        private string filterText;
+        public ICommand AddToPlannedCommand { get; }
 
+        public ICommand AddToWatchCommand { get; }
+
+        public ICommand LikeCommand { get; }
+
+        private string filterText;
         public string FilterText
         {
             get { return filterText; }
@@ -27,56 +26,49 @@ namespace AnimeCheck.ViewModel
             { 
                 Set(ref filterText, value);
                 Items.Filter = null;
-                Items.Filter = FilterAnime;
+                Items.Filter = FilterNameAnime;
             }
         }
 
         private ICollectionView items;
-
         public ICollectionView Items
         {
             get { return items; }
             set { Set(ref items, value); }
         }
 
-        public static Title SelectedAnime { get; set; }
-
-        public static TitlePart SelectedSeason { get; set; }
-
-        //todo потом удалить TestData
-        private List<Title> TestData()
+        public Title selectedAnime;
+        public Title SelectedAnime 
         {
-            TitlePart titlePartTest = new TitlePart(1, 1, "1 сезон");
-            Title titleTest = new Title(123, "example");
-            titleTest.AddPart(titlePartTest);
-            var title = new List<Title>() { titleTest };
-            return title;
+            get { return selectedAnime;}
+            set { Set(ref selectedAnime, value); }
         }
 
+        public TitlePart selectedSeason;
+        public TitlePart SelectedSeason
+        {
+            get { return selectedSeason; }
+            set { Set(ref selectedSeason, value); }
+        }
+
+        
         public ViewedViewModel()
         {
             //todo получаеть запоминаемый текст в поиске
-            var storingValueInSearchString = "";
+            String storingValueInSearchString = "";
             //todo получать лист просмотренных аниме
-            var anime = TestData();
+            List<Title> anime = TitleRepo.GetWithViewed();
 
             Items = CollectionViewSource.GetDefaultView(anime);
-            Items.Filter = FilterAnime;
+            Items.Filter = FilterNameAnime;
             DeleteAnimeCommand = new CommandDeleteAnime(Items);
+            AddToPlannedCommand = new CommandAddToPlanned(Items);
+            AddToWatchCommand = new CommandAddToWatch(Items);
+            LikeCommand = new CommandLike(Items);
             FilterText = storingValueInSearchString;
         }
 
-        //private static void FilterText_Chenge(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    var current = d as AnimeViewModel;
-        //    if (current != null)
-        //    {
-        //        current.Items.Filter = null;
-        //        current.Items.Filter = current.FilterAnime;
-        //    }
-        //}
-
-        private bool FilterAnime(object obj)
+        private bool FilterNameAnime(object obj)
         {
             bool result = true;
             Title current = obj as Title;
@@ -84,7 +76,7 @@ namespace AnimeCheck.ViewModel
             {
                 result = false;
             }
-            //todo устанавливать запоминаемый текст
+            //todo устанавливать запоминаемый текст в поиске
             return result;
         }
 

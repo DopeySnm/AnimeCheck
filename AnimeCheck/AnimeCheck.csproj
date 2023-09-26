@@ -81,8 +81,12 @@
     <Compile Include="AddTitle.xaml.cs">
       <DependentUpon>AddTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\CommandAddToPlanned.cs" />
+    <Compile Include="Commands\CommandAddToViewed.cs" />
+    <Compile Include="Commands\CommandAddToWatch.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandDeleteAnime.cs" />
+    <Compile Include="Commands\CommandLike.cs" />
     <Compile Include="DataProcessing.cs" />
     <Compile Include="FindAnime.cs" />
     <Compile Include="Model\Executor.cs" />
