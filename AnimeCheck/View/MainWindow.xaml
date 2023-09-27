@@ -114,7 +114,8 @@
                         BorderBrush="#00707070" 
                         Command="{Binding OpenHome}"/>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"
-                        Width="230" Content="    Добавить" 
+                        Width="230" 
+                        Content="    Добавить" 
                         Background="#00000000" 
                         Foreground="White" 
                         BorderBrush="#00000000" 
@@ -128,7 +129,7 @@
                         Command="{Binding OpenViewed}"/>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" 
                         Width="230" 
-                        Content="Смотрю" 
+                        Content="     Смотрю" 
                         Background="#00000000" 
                         Foreground="White" 
                         BorderBrush="#00000000" 

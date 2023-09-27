@@ -341,12 +341,12 @@
                     Command="{Binding Path=AddToPlannedCommand}" 
                     CommandParameter="{Binding SelectedSeason}"
                     Grid.Column="1" 
-                    Content="Доавить в буду смотреть"/>
+                    Content="Доавить в запланировано"/>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToWatchCommand}" 
                     CommandParameter="{Binding SelectedSeason}"
                     Grid.Column="2" 
-                    Content="Доавить в смотрю сейчас"/>
+                    Content="Доавить в смотрю"/>
             <Button Style="{StaticResource ButtonDelete}" 
                     Grid.Column="4" 
                     Content="Удалить"/>

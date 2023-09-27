@@ -198,7 +198,7 @@
                     Command="{Binding Path=AddToPlannedCommand}" 
                     CommandParameter="{Binding SelectedSeason}"
                     Grid.Column="1" 
-                    Content="Доавить в буду смотреть"/>
+                    Content="Доавить в запланировано"/>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToViewedCommand}" 
                     CommandParameter="{Binding SelectedSeason}"

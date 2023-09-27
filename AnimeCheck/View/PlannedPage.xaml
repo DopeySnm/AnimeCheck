@@ -200,7 +200,7 @@
                     Command="{Binding Path=AddToWatchCommand}" 
                     CommandParameter="{Binding SelectedSeason}"
                     Grid.Column="2" 
-                    Content="Доавить в смотрю сейчас"/>
+                    Content="Доавить в смотрю"/>
             
             <Button Style="{StaticResource ButtonDelete}" 
                     Grid.Column="4" 
