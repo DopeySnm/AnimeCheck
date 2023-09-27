@@ -283,7 +283,7 @@
                 </Expander>
                 <TreeView x:Name="AnimeList"
                           DockPanel.Dock="Right"
-                          ItemsSource="{Binding Items}"
+                          ItemsSource="{Binding Titles}"
                           SelectedItemChanged="TreeView_OnSelectedItemChanged"
                           Foreground="White"
                           FontSize="28"
@@ -300,7 +300,7 @@
                                          Color="#26FFFFFF" />
                     </TreeView.Resources>
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding Path=TitleParts}">
+                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Viewed}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="600"/>
@@ -338,10 +338,13 @@
                     Grid.Column="0" 
                     Content="♥"/>
             <Button Style="{StaticResource ButtonAny}" 
+                    Command="{Binding Path=AddToPlannedCommand}" 
+                    CommandParameter="{Binding SelectedSeason}"
                     Grid.Column="1" 
                     Content="Доавить в буду смотреть"/>
-            <Button Command="{Binding Path=OpenExpanderCommand}" 
-                    Style="{StaticResource ButtonAny}" 
+            <Button Style="{StaticResource ButtonAny}" 
+                    Command="{Binding Path=AddToWatchCommand}" 
+                    CommandParameter="{Binding SelectedSeason}"
                     Grid.Column="2" 
                     Content="Доавить в смотрю сейчас"/>
             <Button Style="{StaticResource ButtonDelete}" 

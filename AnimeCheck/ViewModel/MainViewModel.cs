@@ -5,25 +5,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AnimeCheck.Model;
+using System.Windows.Data;
 
 namespace AnimeCheck.ViewModel
 {
     class MainViewModel : ViewModelBase
     {
-        private Page Home = new HomePage();
-        private Page WillWatchAnime = new WillWatchAnimePage();
-        private Page WatchingNowAnime = new WatchingNowAnimePage();
-        private Page Viewed = new ViewedPage();
-        private Page AddAnime = new AddAnimePage();
-        private Page _CurPage = new HomePage();
+        private Page Home;
+        private Page Planned;
+        private Page Watch;
+        private Page Viewed;
+        private Page AddAnime;
+        private Page _CurPage;
         
         public Page CurPage
         {
             get { return _CurPage; }
-            set { Set(ref _CurPage, value); }
+            set 
+            {
+                Set(ref _CurPage, value);
+                UpdateTitles(_CurPage);
+            }
         }
         public ICommand OpenHome
         {
@@ -32,18 +38,18 @@ namespace AnimeCheck.ViewModel
                 return new RelayCommand(() => CurPage = Home);
             }
         }
-        public ICommand OpenWillWatchAnimePage
+        public ICommand OpenPlanned
         {
             get
             {
-                return new RelayCommand(() => CurPage = WillWatchAnime);
+                return new RelayCommand(() => CurPage = Planned);
             }
         }
-        public ICommand OpenWatchingNowAnime
+        public ICommand OpenWatch
         {
             get
             {
-                return new RelayCommand(() => CurPage = WatchingNowAnime);
+                return new RelayCommand(() => CurPage = Watch);
             }
         }
         public ICommand OpenViewed
@@ -59,6 +65,32 @@ namespace AnimeCheck.ViewModel
             {
                 return new RelayCommand(() => CurPage = AddAnime);
             }
+        }
+
+        public MainViewModel()
+        {
+            Home = new HomePage();
+            Planned = new PlannedPage();
+            Watch = new WatchPage();
+            Viewed = new ViewedPage();
+            AddAnime = new AddAnimePage();
+            _CurPage = new HomePage();
+        }
+
+        public void UpdateTitles(Page curPage)
+        {
+            if (_CurPage.DataContext is ViewedViewModel viewedViewModel)
+            {
+                viewedViewModel.Titles.Refresh();
+            }
+            if (_CurPage.DataContext is WatchViewModel watchViewModel)
+            {
+                watchViewModel.Titles.Refresh();
+            }
+            //if (_CurPage.DataContext is WatchNowViewModel viewModel)
+            //{
+            //    viewModel.Titles.Refresh();
+            //}
         }
     }
 }

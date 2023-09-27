@@ -25,16 +25,16 @@ namespace AnimeCheck.ViewModel
             set 
             { 
                 Set(ref filterText, value);
-                Items.Filter = null;
-                Items.Filter = FilterNameAnime;
+                Titles.Filter = null;
+                Titles.Filter = FilterNameAnime;
             }
         }
 
-        private ICollectionView items;
-        public ICollectionView Items
+        private ICollectionView titles;
+        public ICollectionView Titles
         {
-            get { return items; }
-            set { Set(ref items, value); }
+            get { return titles; }
+            set { Set(ref titles, value); }
         }
 
         public Title selectedAnime;
@@ -50,7 +50,6 @@ namespace AnimeCheck.ViewModel
             get { return selectedSeason; }
             set { Set(ref selectedSeason, value); }
         }
-
         
         public ViewedViewModel()
         {
@@ -59,12 +58,12 @@ namespace AnimeCheck.ViewModel
             //todo получать лист просмотренных аниме
             List<Title> anime = TitleRepo.GetWithViewed();
 
-            Items = CollectionViewSource.GetDefaultView(anime);
-            Items.Filter = FilterNameAnime;
-            DeleteAnimeCommand = new CommandDeleteAnime(Items);
-            AddToPlannedCommand = new CommandAddToPlanned(Items);
-            AddToWatchCommand = new CommandAddToWatch(Items);
-            LikeCommand = new CommandLike(Items);
+            Titles = CollectionViewSource.GetDefaultView(anime);
+            Titles.Filter = FilterNameAnime;
+            DeleteAnimeCommand = new CommandDeleteAnime(Titles);
+            AddToPlannedCommand = new CommandAddToPlanned(Titles);
+            AddToWatchCommand = new CommandAddToWatch(Titles);
+            LikeCommand = new CommandLike(Titles);
             FilterText = storingValueInSearchString;
         }
 

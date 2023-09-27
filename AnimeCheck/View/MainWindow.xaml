@@ -108,9 +108,9 @@
             <StackPanel Orientation="Horizontal">
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="80" Content=" ⌂" Background="#00000000" Foreground="White" BorderBrush="#00707070" Command="{Binding OpenHome}"/>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="230" Content="    Добавить" Background="#00000000" Foreground="White" BorderBrush="#00000000" Command="{Binding OpenAddAnime}"/>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="230" Content="Буду смотреть" Background="#00000000" Foreground="White" BorderBrush="#00020000" Command="{Binding OpenWillWatchAnimePage}"/>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="230" Content="Буду смотреть" Background="#00000000" Foreground="White" BorderBrush="#00020000" Command="{Binding OpenPlanned}"/>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="230" Content="Просмотренно" Background="#00000000" Foreground="White" BorderBrush="#00000000" Command="{Binding OpenViewed}"/>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="230" Content="Смотрю сейчас" Background="#00000000" Foreground="White" BorderBrush="#00000000" Command="{Binding OpenWatchingNowAnime}"/>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Width="230" Content="Смотрю сейчас" Background="#00000000" Foreground="White" BorderBrush="#00000000" Command="{Binding OpenWatch}"/>
             </StackPanel>
         </Grid>
     </Grid> 

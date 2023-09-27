@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using AnimeCheck.Model;
+using System.ComponentModel;
 using AnimeCheck.ViewModel;
 
 namespace AnimeCheck.View
@@ -11,12 +12,11 @@ namespace AnimeCheck.View
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-            DataProcessing.ReadFile();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //DataContext = new ViewedViewModel();
+            
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

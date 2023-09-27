@@ -19,7 +19,10 @@ namespace AnimeCheck.Commands
 
         public override void Execute(object parameter)
         {
-            
+            if (parameter is TitlePart titlePart)
+            {
+                titlePart.Status = Status.Viewed;
+            }
             items.Refresh();
         }
     }

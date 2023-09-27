@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnimeCheck.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -18,7 +19,11 @@ namespace AnimeCheck.Commands
 
         public override void Execute(object parameter)
         {
-            
+            if(parameter is TitlePart titlePart)
+            {
+                titlePart.Status = Status.Planned;
+            }
+            items.Refresh();
         }
     }
 }
