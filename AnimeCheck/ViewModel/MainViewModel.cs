@@ -1,15 +1,7 @@
 ﻿using AnimeCheck.View;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
-using AnimeCheck.Model;
-using System.Windows.Data;
 
 namespace AnimeCheck.ViewModel
 {
@@ -87,10 +79,10 @@ namespace AnimeCheck.ViewModel
             {
                 watchViewModel.Titles.Refresh();
             }
-            //if (_CurPage.DataContext is WatchNowViewModel viewModel)
-            //{
-            //    viewModel.Titles.Refresh();
-            //}
+            if (_CurPage.DataContext is PlannedViewModel plannedViewModel)
+            {
+                plannedViewModel.Titles.Refresh();
+            }
         }
     }
 }

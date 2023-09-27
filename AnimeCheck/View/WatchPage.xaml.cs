@@ -23,9 +23,18 @@ namespace AnimeCheck.View
 
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            WatchViewModel viewModel = DataContext as WatchViewModel;
 
+            if (e.NewValue is Title title)
+            {
+                viewModel.SelectedAnime = (Title)e.NewValue;
+            }
+            else if (e.NewValue is TitlePart titlePart)
+            {
+                viewModel.SelectedSeason = (TitlePart)e.NewValue;
+            }
         }
     }
 }

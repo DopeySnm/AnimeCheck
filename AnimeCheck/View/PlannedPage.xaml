@@ -4,21 +4,126 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimeCheck.View"
+      xmlns:vm="clr-namespace:AnimeCheck.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="PlannedPage">
-
+    <Page.DataContext>
+        <vm:PlannedViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="TextBoxAny" TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#00000000"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+        </Style>
+        <Style x:Key="TextBlockAny" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#00000000"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="BaseButtonAny" TargetType="Button">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderBrush" Value="#00000000"/>
+            <Setter Property="Background" Value="#4C000000"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="ButtonAny" TargetType="Button" BasedOn="{StaticResource BaseButtonAny}" >
+            <Setter Property="Foreground" Value="#FF9D9999"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            BorderThickness="1"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#30000000" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Margin" Value="2,2,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonDelete" TargetType="Button" BasedOn="{StaticResource BaseButtonAny}">
+            <Setter Property="Foreground" Value="#FFA70000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                                BorderThickness="1"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Red"/>
+                                <Setter Property="Background" Value="#30000000" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Margin" Value="2,2,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonAdd" TargetType="Button" BasedOn="{StaticResource BaseButtonAny}">
+            <Setter Property="Foreground" Value="#FF51A500"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="1"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF02F702"/>
+                                <Setter Property="Background" Value="#30000000" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Margin" Value="2,2,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="91"/>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition Height="410"/>
+            <RowDefinition Height="390"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="949"/>
+            <ColumnDefinition Width="950"/>
             <ColumnDefinition Width="25"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
@@ -29,35 +134,77 @@
             <TextBox Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="3">
-            <TreeView x:Name="AnimeList" Foreground="White" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3">
+            <TreeView x:Name="AnimeList"
+                          DockPanel.Dock="Right"
+                          ItemsSource="{Binding Titles}"
+                          SelectedItemChanged="TreeView_OnSelectedItemChanged"
+                          Foreground="White"
+                          FontSize="28"
+                          Background="#4C000000"
+                          BorderBrush="#FFABADB3">
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                         Color="#26FFFFFF" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" 
+                                         Color="#26FFFFFF" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
+                                         Color="#26FFFFFF" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" 
+                                         Color="#26FFFFFF" />
+                </TreeView.Resources>
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Seasons}">
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Planned}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="825"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="600"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding TitlePart}" Foreground="White" Grid.Column="0"/>
-                            <Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>
-                            <Button Grid.Column="2" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
+                            <TextBlock Text="{Binding Name}" 
+                                           Style="{StaticResource TextBlockAny}" 
+                                           Grid.Column="0"/>
                         </Grid>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="856"/>
-                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="680"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Season}" Foreground="White" Grid.Column="0"/>
-                                    <Button Grid.Column="1" FontSize="25" Content="✖" Foreground="Red" BorderBrush="#00000000" Background="#00000000"/>
-                                    <!--<Button Grid.Column="1" Content="♥" Foreground="White" BorderBrush="#00000000" Background="#00000000"/>-->
+                                    <TextBlock Style="{StaticResource TextBlockAny}" 
+                                                   Text="{Binding Name}" 
+                                                   Grid.Column="0"/>
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
+        </Grid>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="385"/>
+                <ColumnDefinition Width="385"/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ButtonAny}" 
+                    Grid.Column="0" 
+                    Content="♥"/>
+            
+            <Button Style="{StaticResource ButtonAny}" 
+                    Command="{Binding Path=AddToViewedCommand}" 
+                    CommandParameter="{Binding SelectedSeason}"
+                    Grid.Column="1" 
+                    Content="Доавить в просмотренно"/>
+            
+            <Button Style="{StaticResource ButtonAny}" 
+                    Command="{Binding Path=AddToWatchCommand}" 
+                    CommandParameter="{Binding SelectedSeason}"
+                    Grid.Column="2" 
+                    Content="Доавить в смотрю сейчас"/>
+            
+            <Button Style="{StaticResource ButtonDelete}" 
+                    Grid.Column="4" 
+                    Content="Удалить"/>
         </Grid>
     </Grid>
 </Page>
