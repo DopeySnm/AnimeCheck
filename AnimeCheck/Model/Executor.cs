@@ -5,8 +5,8 @@ namespace AnimeCheck.Model
 {
     public interface Executor
     {
-        List<Title> GetTitles();
-        void SaveTitles(List<Title> titles);
+        List<Title> GetData();
+        void SaveData(List<Title> titles);
     }
 
 }

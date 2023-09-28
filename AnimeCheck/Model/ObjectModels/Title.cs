@@ -5,9 +5,9 @@ namespace AnimeCheck.Model
 {
     public class Title
     {
-        [JsonProperty] private int _id;
+        [JsonProperty] public int ID { get; private set; }
 
-        [JsonProperty] public string Name { get; set; }
+        [JsonProperty] public string Name { get; private set; }
 
         [JsonProperty] private bool _favorite;
 
@@ -37,18 +37,10 @@ namespace AnimeCheck.Model
 
         public Title(int id, string name)
         {
-            _id = id;
+            ID = id;
             Name = name;
             _favorite = false;
             _titleParts = new List<TitlePart>();
-        }
-
-        public Title(int id, string name, List<TitlePart> parts)
-        {
-            _id = id;
-            Name = name;
-            _favorite = false;
-            _titleParts = parts;
         }
 
         public void Like()
@@ -59,6 +51,11 @@ namespace AnimeCheck.Model
         public void AddPart(TitlePart part)
         {
             _titleParts.Add(part);
+        }
+
+        public void RemovePart(TitlePart part)
+        {
+            _titleParts.Remove(part);
         }
     }
 }

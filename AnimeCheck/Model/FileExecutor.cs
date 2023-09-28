@@ -7,7 +7,7 @@ namespace AnimeCheck.Model
 {
     public class FileExecutor : Executor
     {
-        public List<Title> GetTitles()
+        public List<Title> GetData()
         {
             
             if(!File.Exists("titles.json"))
@@ -20,7 +20,7 @@ namespace AnimeCheck.Model
             return JsonConvert.DeserializeObject<List<Title>>(json)?? new List<Title>();
         }
 
-        public void SaveTitles(List<Title> titles)
+        public void SaveData(List<Title> titles)
         {
             String json = JsonConvert.SerializeObject(titles, Formatting.Indented);
             File.WriteAllText("titles.json",json);

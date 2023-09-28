@@ -45,9 +45,7 @@ namespace AnimeCheck.Model
 
         public static void SwichStatus(TitlePart part, Status status)
         {
-
+            part.Status = status;
         }
-
-
     }
 }
