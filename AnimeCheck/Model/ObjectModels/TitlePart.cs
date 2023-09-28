@@ -5,38 +5,36 @@ namespace AnimeCheck.Model
 {
     public class TitlePart
     {
-        [JsonProperty] private int _id;
+        [JsonProperty] public int ID { get; private set; }
 
-        [JsonProperty] private int _titleId;
+        [JsonProperty] public int TitleId { get; private set; }
 
-        [JsonProperty] public string Name { get; set; }
+        [JsonProperty] public string Name { get; private set; }
 
-        [JsonProperty] private int _episodesCount;
+        [JsonProperty] public int EpisodesCount { get; private set; }
 
-        [JsonProperty] private TimeSpan _episodeDuration;
+        [JsonProperty] public TimeSpan EpisodeDuration { get; private set; }
 
         [JsonProperty] public Status Status;
 
-        public TitlePart()
-        {
-        }
+        public TitlePart(){}
 
         public TitlePart(int id, int titleId, string name)
         {
-            _titleId = titleId;
+            TitleId = titleId;
             Name = name;
-            _id = id;
+            ID = id;
         }
 
         public TitlePart(int id, int titleId, string name, int episodesCount, TimeSpan episodeDuration, Status status)
         {
-            _id = id;
-            _titleId = titleId;
+            ID = id;
+            TitleId = titleId;
             Name = name;
-            _episodesCount = episodesCount;
-            _episodeDuration = episodeDuration;
+            EpisodesCount = episodesCount;
+            EpisodeDuration = episodeDuration;
             Status = status;
-
         }
+
     }
 }
