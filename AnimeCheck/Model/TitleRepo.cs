@@ -5,7 +5,7 @@ namespace AnimeCheck.Model
     public static class TitleRepo
     {
         private static Executor _executor = new FileExecutor();
-        public static List<Title> Ttitles = _executor.GetTitles();
+        public static List<Title> Ttitles = _executor.GetData();
         
         public static List<Title> GetWithViewed()
         {
@@ -23,7 +23,31 @@ namespace AnimeCheck.Model
         public static void AddTitle(Title title)
         {
             Ttitles.Add(title);
-            _executor.SaveTitles(Ttitles);
+            _executor.SaveData(Ttitles);
         }
+        public static void DeleteTitle(Title title)
+        {
+            Ttitles.Remove(title);
+            _executor.SaveData(Ttitles);
+        }
+
+        public static void AddPatrt(TitlePart part)
+        {
+            Ttitles.Find(title => title.ID == part.TitleId).AddPart(part);
+            _executor.SaveData(Ttitles);
+        }
+
+        public static void DeletePatrt(TitlePart part)
+        {
+            Ttitles.Find(title => title.ID == part.TitleId).RemovePart(part);
+            _executor.SaveData(Ttitles);
+        }
+
+        public static void SwichStatus(TitlePart part, Status status)
+        {
+
+        }
+
+
     }
 }
