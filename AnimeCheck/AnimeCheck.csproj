@@ -88,7 +88,8 @@
     <Compile Include="Commands\CommandAddToViewed.cs" />
     <Compile Include="Commands\CommandAddToWatch.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\CommandDeleteAnime.cs" />
+    <Compile Include="Commands\CommandDeleteTitle.cs" />
+    <Compile Include="Commands\CommandDeleteTitlePart.cs" />
     <Compile Include="Commands\CommandLike.cs" />
     <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Model\Executor.cs" />

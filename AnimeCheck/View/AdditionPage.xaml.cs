@@ -25,7 +25,16 @@ namespace AnimeCheck.View
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_SelectionChangedPart(object sender, SelectionChangedEventArgs e)
+        {
+            AdditionViewModel viewModel = DataContext as AdditionViewModel;
+            var listView = e.OriginalSource as ListView;
+            if (listView.SelectedItem is TitlePart titlePart)
+            {
+                viewModel.SelectedSeason = titlePart;
+            }
+        }
+        private void ListView_SelectionChangedTitle(object sender, SelectionChangedEventArgs e)
         {
             AdditionViewModel viewModel = DataContext as AdditionViewModel;
             var listView = e.OriginalSource as ListView;

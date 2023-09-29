@@ -10,19 +10,23 @@ using System.Windows.Data;
 
 namespace AnimeCheck.Commands
 {
-    public class CommandDeleteAnime : CommandBase
+    public class CommandDeleteTitlePart : CommandBase
     {
         private ICollectionView items;
-        public CommandDeleteAnime(ICollectionView items)
+        public CommandDeleteTitlePart(ICollectionView items)
         {
             this.items = items;
         }
 
         public override void Execute(object parameter)
         {
-            //todo MultiBinding
-            //todo сделать удаление из репозитория
-            items.Refresh();
+            if (parameter is AdditionViewModel viewModel)
+            {
+                TitleRepo.DeletePart(viewModel.SelectedSeason);
+                List<TitlePart> titles = viewModel.SelectedAnime.GetTitleParts();
+                items = CollectionViewSource.GetDefaultView(titles);
+                items.Refresh();
+            }
         }
     }
 }

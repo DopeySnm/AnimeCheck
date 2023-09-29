@@ -15,7 +15,7 @@
         <converter:RadioButtonCheckedConverter x:Key="RadioButtonConv"/>
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style TargetType="RadioButton">
@@ -160,13 +160,17 @@
                             Visibility="{Binding VisibilityButtonAddTitle}"/>
                 </Grid>
                 <TextBlock Text="Части"/>
-                <ListView ItemsSource="{Binding TitleParts}">
+                <ListView ItemsSource="{Binding TitleParts}"
+                          SelectionChanged="ListView_SelectionChangedPart" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Content="Удалить Часть" 
+                        Command="{Binding DeleteTitlePartCommand}"
+                        CommandParameter="{Binding}"/>
                 <Button Content="Добавить Часть" 
                         Command="{Binding ExpandedCommand}"
                         Visibility="{Binding VisibilityAddTitlePart}"/>
@@ -175,10 +179,7 @@
                       IsExpanded="{Binding IsExpanded}"
                       Visibility="{Binding VisibilityAddTitlePart}">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Часть"/>
-                        <TextBlock Text="{Binding SelectedSeason.Name}" />
-                    </StackPanel>
+                    <TextBlock Text="Часть"/>
                     <TextBlock Text="Название"/>
                     <TextBox Text="{Binding NewNameTitlePart}" />
                     <TextBlock Text="Количество эпизодов"/>
@@ -208,15 +209,23 @@
                 </StackPanel>
             </Expander>
         </StackPanel>
-        <DockPanel Grid.Row="1" Grid.Column="2" Background="#4C000000">
-            <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                <TextBlock Text="Поиск" DockPanel.Dock="Left" />
+        <DockPanel Grid.Row="1" 
+                   Grid.Column="2" 
+                   Background="#4C000000">
+            <DockPanel DockPanel.Dock="Top" 
+                       LastChildFill="True">
+                <TextBlock Text="Поиск" 
+                           DockPanel.Dock="Left" />
                 <TextBox DockPanel.Dock="Right" />
             </DockPanel>
             <Button DockPanel.Dock="Top" Content="..." 
                     Command="{Binding ActivationAddTitleCommand}"
                     CommandParameter="{Binding}"/>
-            <ListView SelectionChanged="ListView_SelectionChanged" 
+            <Button DockPanel.Dock="Top" 
+                    Content="Удалить" 
+                    Command="{Binding DeleteTitleCommand}" 
+                    CommandParameter="{Binding SelectedAnime}"/>
+            <ListView SelectionChanged="ListView_SelectionChangedTitle" 
                       DockPanel.Dock="Bottom" 
                       ItemsSource="{Binding Title}">
                 <ListView.ItemTemplate>

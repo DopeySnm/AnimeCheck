@@ -70,7 +70,7 @@ namespace AnimeCheck.ViewModel
 
             Titles = CollectionViewSource.GetDefaultView(anime);
             Titles.Filter = FilterNameAnime;
-            DeleteAnimeCommand = new CommandDeleteAnime(Titles);
+            DeleteAnimeCommand = new CommandDeleteTitle(Titles);
             AddToPlannedCommand = new CommandAddToPlanned(Titles);
             AddToWatchCommand = new CommandAddToWatch(Titles);
             LikeCommand = new CommandLike(Titles);

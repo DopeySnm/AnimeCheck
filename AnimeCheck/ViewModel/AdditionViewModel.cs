@@ -16,6 +16,10 @@ namespace AnimeCheck.ViewModel
 
         public ICommand ActivationAddTitleCommand { get; }
 
+        public ICommand DeleteTitleCommand { get; }
+
+        public ICommand DeleteTitlePartCommand { get; }
+
         public ICommand AddTitleCommand { get; }
 
         public ICommand AddTitlePartCommand { get; }
@@ -119,6 +123,8 @@ namespace AnimeCheck.ViewModel
             AddTitleCommand = new CommandAddTitle();
             ActivationAddTitleCommand = new CommandActivationAddTitle();
             AddTitlePartCommand = new CommandAddTitlePart();
+            DeleteTitleCommand = new CommandDeleteTitle(Title);
+            DeleteTitlePartCommand = new CommandDeleteTitlePart(Title);
         }
     }
 }
