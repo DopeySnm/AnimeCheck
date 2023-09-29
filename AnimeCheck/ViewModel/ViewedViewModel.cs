@@ -2,6 +2,7 @@ using AnimeCheck.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Data;
 using System.Windows.Input;
 using AnimeCheck.Commands;
@@ -16,6 +17,8 @@ namespace AnimeCheck.ViewModel
 
         public ICommand AddToWatchCommand { get; }
 
+        public ICommand ExpandedCommand { get { return new RelayCommand(() => IsExpanded = !IsExpanded); } }
+
         public ICommand LikeCommand { get; }
 
         private string filterText;
@@ -28,6 +31,13 @@ namespace AnimeCheck.ViewModel
                 Titles.Filter = null;
                 Titles.Filter = FilterNameAnime;
             }
+        }
+
+        private bool isExpanded;
+        public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set { Set(ref isExpanded, value); }
         }
 
         private ICollectionView titles;

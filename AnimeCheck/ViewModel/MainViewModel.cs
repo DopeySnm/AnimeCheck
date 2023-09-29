@@ -11,7 +11,7 @@ namespace AnimeCheck.ViewModel
         private Page Planned;
         private Page Watch;
         private Page Viewed;
-        private Page AddAnime;
+        private Page Addition;
         private Page _CurPage;
         
         public Page CurPage
@@ -51,11 +51,11 @@ namespace AnimeCheck.ViewModel
                 return new RelayCommand(() => CurPage = Viewed);
             }
         }
-        public ICommand OpenAddAnime
+        public ICommand OpenAddition
         {
             get
             {
-                return new RelayCommand(() => CurPage = AddAnime);
+                return new RelayCommand(() => CurPage = Addition);
             }
         }
 
@@ -65,7 +65,7 @@ namespace AnimeCheck.ViewModel
             Planned = new PlannedPage();
             Watch = new WatchPage();
             Viewed = new ViewedPage();
-            AddAnime = new AddAnimePage();
+            Addition = new AdditionPage();
             _CurPage = new HomePage();
         }
 

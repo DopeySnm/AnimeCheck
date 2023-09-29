@@ -25,17 +25,12 @@ namespace AnimeCheck.View
             
             if (e.NewValue is Title title)
             {
-               viewModel.SelectedAnime = (Title)e.NewValue;
+                viewModel.SelectedAnime = (Title)e.NewValue;
             }
             else if (e.NewValue is TitlePart titlePart)
             {
                 viewModel.SelectedSeason = (TitlePart)e.NewValue;
             }
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            MyExpander.IsExpanded = !MyExpander.IsExpanded;
         }
     }
 }

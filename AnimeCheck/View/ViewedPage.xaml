@@ -154,11 +154,14 @@
                 </Grid>
             </Border>
             <ControlTemplate.Triggers>
-                <!--Change the sign to minus when toggled--><!--
+                <!--Change the sign to minus when toggled-->
+                <!--
                 <Trigger Property="IsChecked" Value="True">
                     <Setter Property="Data" TargetName="Sign" Value="M 0,5 H 10 Z"/>
                 </Trigger>
-                --><!-- MouseOver, Pressed behaviours--><!--
+                -->
+                <!-- MouseOver, Pressed behaviours-->
+                <!--
                 <Trigger Property="IsMouseOver" Value="true">
                     <Setter Property="Stroke" Value="#FF3C7FB1" TargetName="Circle"/>
                     <Setter Property="Stroke" Value="#222" TargetName="Sign"/>
@@ -226,8 +229,8 @@
                          FontSize="25"/>
             </Grid>
             <Button x:Name="AddButton" 
-                    Click="AddButton_Click" 
                     Style="{StaticResource ButtonAdd}" 
+                    Command="{Binding ExpandedCommand}"
                     Grid.Column="3" 
                     Content="Добавить"  
                     Width="130"/>
@@ -235,7 +238,8 @@
         <Grid Grid.Column="1" Grid.Row="3">
             <DockPanel LastChildFill="True">
                 <Expander x:Name="MyExpander" 
-                          Template="{StaticResource SimpleExpanderTemp}" 
+                          Template="{StaticResource SimpleExpanderTemp}"
+                          IsExpanded="{Binding IsExpanded}"
                           Foreground="White" 
                           Grid.Row="2" 
                           Grid.Column="1" 
@@ -348,6 +352,8 @@
                     Grid.Column="2" 
                     Content="Доавить в смотрю"/>
             <Button Style="{StaticResource ButtonDelete}" 
+                    Command="{Binding DeleteAnimeCommand}"
+                    CommandParameter="{Binding}"
                     Grid.Column="4" 
                     Content="Удалить"/>
         </Grid>

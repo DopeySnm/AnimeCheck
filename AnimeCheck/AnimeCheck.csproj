@@ -81,25 +81,30 @@
     <Compile Include="AddTitle.xaml.cs">
       <DependentUpon>AddTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\CommandActivationAddTitle.cs" />
+    <Compile Include="Commands\CommandAddTitle.cs" />
+    <Compile Include="Commands\CommandAddTitlePart.cs" />
     <Compile Include="Commands\CommandAddToPlanned.cs" />
     <Compile Include="Commands\CommandAddToViewed.cs" />
     <Compile Include="Commands\CommandAddToWatch.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandDeleteAnime.cs" />
     <Compile Include="Commands\CommandLike.cs" />
+    <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Model\Executor.cs" />
     <Compile Include="Model\FileExecutor.cs" />
     <Compile Include="Model\ObjectModels\Title.cs" />
     <Compile Include="Model\ObjectModels\TitlePart.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="Model\TitleRepo.cs" />
+    <Compile Include="ViewModel\AdditionViewModel.cs" />
     <Compile Include="ViewModel\PlannedViewModel.cs" />
     <Compile Include="ViewModel\ViewedViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WatchViewModel.cs" />
-    <Compile Include="View\AddAnimePage.xaml.cs">
-      <DependentUpon>AddAnimePage.xaml</DependentUpon>
+    <Compile Include="View\AdditionPage.xaml.cs">
+      <DependentUpon>AdditionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -115,7 +120,7 @@
     </Compile>
     <Page Include="AddAnime.xaml" />
     <Page Include="AddTitle.xaml" />
-    <Page Include="View\AddAnimePage.xaml">
+    <Page Include="View\AdditionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

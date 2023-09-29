@@ -119,7 +119,7 @@
                         Background="#00000000" 
                         Foreground="White" 
                         BorderBrush="#00000000" 
-                        Command="{Binding OpenAddAnime}"/>
+                        Command="{Binding OpenAddition}"/>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" 
                         Width="230" 
                         Content="Просмотренно" 
