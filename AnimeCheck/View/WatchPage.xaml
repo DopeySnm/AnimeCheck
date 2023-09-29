@@ -196,12 +196,12 @@
                     Content="♥"/>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToPlannedCommand}" 
-                    CommandParameter="{Binding SelectedSeason}"
+                    CommandParameter="{Binding}"
                     Grid.Column="1" 
                     Content="Доавить в запланировано"/>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToViewedCommand}" 
-                    CommandParameter="{Binding SelectedSeason}"
+                    CommandParameter="{Binding}"
                     Grid.Column="2" 
                     Content="Доавить в просмотренно"/>
             <Button Style="{StaticResource ButtonDelete}" 

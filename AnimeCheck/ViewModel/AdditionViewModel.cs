@@ -113,20 +113,12 @@ namespace AnimeCheck.ViewModel
 
         public AdditionViewModel()
         {
-            Test();
-
             Title = CollectionViewSource.GetDefaultView(TitleRepo.Ttitles);
             VisibilityButtonAddTitle = Visibility.Hidden;
             VisibilityAddTitlePart = Visibility.Visible;
             AddTitleCommand = new CommandAddTitle();
             ActivationAddTitleCommand = new CommandActivationAddTitle();
             AddTitlePartCommand = new CommandAddTitlePart();
-        }
-
-        public void Test()
-        {
-            List<TitlePart> titleParts = TitleRepo.GetWithPlanned()[0].GetTitleParts();
-            TitleParts = CollectionViewSource.GetDefaultView(titleParts);
         }
     }
 }

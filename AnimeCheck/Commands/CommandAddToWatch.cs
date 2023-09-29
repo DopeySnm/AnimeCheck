@@ -1,10 +1,8 @@
 ﻿using AnimeCheck.Model;
-using System;
+using AnimeCheck.ViewModel;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace AnimeCheck.Commands
 {
@@ -19,12 +17,33 @@ namespace AnimeCheck.Commands
 
         public override void Execute(object parameter)
         {
-            if (parameter is TitlePart titlePart)
+            if (parameter is ViewedViewModel viewedViewModel)
             {
-                titlePart.Status = Status.Watch;
-                TitleRepo.SwichStatus(titlePart, Status.Watch);
+                TitleRepo.SwichStatus(viewedViewModel.SelectedSeason, Status.Watch);
+                List<Title> titles = TitleRepo.GetWithViewed();
+                viewedViewModel.Titles = CollectionViewSource.GetDefaultView(titles);
+                viewedViewModel.Titles.Refresh();
             }
-            items.Refresh();
+            if (parameter is WatchViewModel watchViewModel)
+            {
+                TitleRepo.SwichStatus(watchViewModel.SelectedSeason, Status.Watch);
+                List<Title> titles = TitleRepo.GetWithWatch();
+                watchViewModel.Titles = CollectionViewSource.GetDefaultView(titles);
+                watchViewModel.Titles.Refresh();
+            }
+            if (parameter is PlannedViewModel plannedViewModel)
+            {
+                TitleRepo.SwichStatus(plannedViewModel.SelectedSeason, Status.Watch);
+                List<Title> titles = TitleRepo.GetWithPlanned();
+                plannedViewModel.Titles = CollectionViewSource.GetDefaultView(titles);
+                plannedViewModel.Titles.Refresh();
+            }
+            //if (parameter is TitlePart titlePart)
+            //{
+            //    titlePart.Status = Status.Watch;
+            //    TitleRepo.SwichStatus(titlePart, Status.Watch);
+            //    items.Refresh();
+            //}
         }
     }
 }

@@ -237,7 +237,7 @@
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="3">
             <DockPanel LastChildFill="True">
-                <Expander x:Name="MyExpander" 
+                <!--<Expander x:Name="MyExpander" 
                           Template="{StaticResource SimpleExpanderTemp}"
                           IsExpanded="{Binding IsExpanded}"
                           Foreground="White" 
@@ -284,7 +284,7 @@
                                     FontSize="20"/>
                         </StackPanel>
                     </Grid>
-                </Expander>
+                </Expander>-->
                 <TreeView x:Name="AnimeList"
                           DockPanel.Dock="Right"
                           ItemsSource="{Binding Titles}"
@@ -343,12 +343,12 @@
                     Content="♥"/>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToPlannedCommand}" 
-                    CommandParameter="{Binding SelectedSeason}"
+                    CommandParameter="{Binding}"
                     Grid.Column="1" 
                     Content="Доавить в запланировано"/>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToWatchCommand}" 
-                    CommandParameter="{Binding SelectedSeason}"
+                    CommandParameter="{Binding}"
                     Grid.Column="2" 
                     Content="Доавить в смотрю"/>
             <Button Style="{StaticResource ButtonDelete}" 

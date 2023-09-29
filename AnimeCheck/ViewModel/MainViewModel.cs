@@ -1,6 +1,9 @@
-﻿using AnimeCheck.View;
+﻿using AnimeCheck.Model;
+using AnimeCheck.View;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace AnimeCheck.ViewModel
@@ -73,14 +76,20 @@ namespace AnimeCheck.ViewModel
         {
             if (_CurPage.DataContext is ViewedViewModel viewedViewModel)
             {
+                List<Title> titles = TitleRepo.GetWithViewed();
+                viewedViewModel.Titles = CollectionViewSource.GetDefaultView(titles);
                 viewedViewModel.Titles.Refresh();
             }
             if (_CurPage.DataContext is WatchViewModel watchViewModel)
             {
+                List<Title> titles = TitleRepo.GetWithWatch();
+                watchViewModel.Titles = CollectionViewSource.GetDefaultView(titles);
                 watchViewModel.Titles.Refresh();
             }
             if (_CurPage.DataContext is PlannedViewModel plannedViewModel)
             {
+                List<Title> titles = TitleRepo.GetWithPlanned();
+                plannedViewModel.Titles = CollectionViewSource.GetDefaultView(titles);
                 plannedViewModel.Titles.Refresh();
             }
         }
