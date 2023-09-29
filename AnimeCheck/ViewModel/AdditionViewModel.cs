@@ -105,6 +105,7 @@ namespace AnimeCheck.ViewModel
         {
             Test();
 
+            Title = CollectionViewSource.GetDefaultView(TitleRepo.Ttitles);
             VisibilityButtonAddTitle = Visibility.Hidden;
             VisibilityAddTitlePart = Visibility.Visible;
             AddTitleCommand = new CommandAddTitle();
@@ -117,9 +118,6 @@ namespace AnimeCheck.ViewModel
             titleParts.AddRange(TitleRepo.GetWithPlanned()[0].Watch);
             titleParts.AddRange(TitleRepo.GetWithPlanned()[0].Planned);
             TitleParts = CollectionViewSource.GetDefaultView(titleParts);
-
-            List<Title> title = TitleRepo.GetWithPlanned();
-            Title = CollectionViewSource.GetDefaultView(title);
         }
     }
 }

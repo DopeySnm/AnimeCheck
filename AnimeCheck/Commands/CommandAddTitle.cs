@@ -1,4 +1,5 @@
-﻿using AnimeCheck.ViewModel;
+﻿using AnimeCheck.Model;
+using AnimeCheck.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,12 @@ namespace AnimeCheck.Commands
                 viewModel.VisibilityButtonAddTitle = Visibility.Hidden;
                 viewModel.VisibilityAddTitlePart = Visibility.Visible;
                 viewModel.IsEnabledNewNameTitle = false;
+                if (!viewModel.NewNameTitle.Equals(""))
+                {
+                    Title title = new Title(1, viewModel.NewNameTitle);
+                    TitleRepo.AddTitle(title);
+                    viewModel.Title.Refresh();
+                }
             }
             //TODO Add title
         }
