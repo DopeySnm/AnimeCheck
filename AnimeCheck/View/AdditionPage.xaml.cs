@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -25,7 +26,7 @@ namespace AnimeCheck.View
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {   
+        {
             AdditionViewModel viewModel = DataContext as AdditionViewModel;
             var listView = e.OriginalSource as ListView;
             if (listView.SelectedItem is Title title)

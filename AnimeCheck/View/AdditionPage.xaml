@@ -183,7 +183,7 @@
                     <TextBox Text="{Binding NewNameTitlePart}" />
                     <TextBlock Text="Количество эпизодов"/>
                     <TextBox Text="{Binding NewEpisodesCount}" 
-                             PreviewTextInput="NumberValidationTextBox"/>
+                             PreviewTextInput="NumberValidationTextBox" />
                     <TextBlock Text="Статус"/>
                     <StackPanel Orientation="Horizontal">
                         <RadioButton GroupName="Status" 
@@ -202,7 +202,9 @@
                                 Converter={StaticResource RadioButtonConv},
                                 ConverterParameter={x:Static statusEnum:Status.Watch}}"/>
                     </StackPanel>
-                    <Button Content="Добавить"/>
+                    <Button Content="Добавить" 
+                            Command="{Binding AddTitlePartCommand}" 
+                            CommandParameter="{Binding}"/>
                 </StackPanel>
             </Expander>
         </StackPanel>

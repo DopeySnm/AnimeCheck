@@ -31,13 +31,13 @@ namespace AnimeCheck.Model
             _executor.SaveData(Ttitles);
         }
 
-        public static void AddPatrt(TitlePart part)
+        public static void AddPart(TitlePart part)
         {
             Ttitles.Find(title => title.ID == part.TitleId).AddPart(part);
             _executor.SaveData(Ttitles);
         }
 
-        public static void DeletePatrt(TitlePart part)
+        public static void DeletePart(TitlePart part)
         {
             Ttitles.Find(title => title.ID == part.TitleId).RemovePart(part);
             _executor.SaveData(Ttitles);

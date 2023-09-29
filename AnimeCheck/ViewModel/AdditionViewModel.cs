@@ -6,6 +6,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows;
 using AnimeCheck.Commands;
+using System;
 
 namespace AnimeCheck.ViewModel
 {
@@ -16,6 +17,8 @@ namespace AnimeCheck.ViewModel
         public ICommand ActivationAddTitleCommand { get; }
 
         public ICommand AddTitleCommand { get; }
+
+        public ICommand AddTitlePartCommand { get; }
 
         private ICollectionView titleParts;
         public ICollectionView TitleParts
@@ -87,6 +90,13 @@ namespace AnimeCheck.ViewModel
             set { Set(ref newNameTitlePart, value); }
         }
 
+        private TimeSpan episodeDuration;
+        public TimeSpan EpisodeDuration
+        {
+            get { return episodeDuration; }
+            set { Set(ref episodeDuration, value); }
+        }
+
         private int newEpisodesCount;
         public int NewEpisodesCount
         {
@@ -110,6 +120,7 @@ namespace AnimeCheck.ViewModel
             VisibilityAddTitlePart = Visibility.Visible;
             AddTitleCommand = new CommandAddTitle();
             ActivationAddTitleCommand = new CommandActivationAddTitle();
+            AddTitlePartCommand = new CommandAddTitlePart();
         }
 
         public void Test()

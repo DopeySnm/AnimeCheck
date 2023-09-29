@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace AnimeCheck.Commands
 {
@@ -20,12 +21,14 @@ namespace AnimeCheck.Commands
                 viewModel.IsEnabledNewNameTitle = false;
                 if (!viewModel.NewNameTitle.Equals(""))
                 {
-                    Title title = new Title(1, viewModel.NewNameTitle);
+                    var id = 1;
+                    //todo Доделать генератор айдишников
+                    var name = viewModel.NewNameTitle;
+                    Title title = new Title(id, name);
                     TitleRepo.AddTitle(title);
                     viewModel.Title.Refresh();
                 }
             }
-            //TODO Add title
         }
     }
 }
