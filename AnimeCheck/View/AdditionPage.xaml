@@ -140,7 +140,9 @@
             <RowDefinition/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Grid.Column="1" Background="#4C000000">
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="1" 
+                    Background="#4C000000">
             <StackPanel>
                 <TextBlock Text="Аниме "/>
                 <Grid>
@@ -180,7 +182,8 @@
                     <TextBlock Text="Название"/>
                     <TextBox Text="{Binding NewNameTitlePart}" />
                     <TextBlock Text="Количество эпизодов"/>
-                    <TextBox Text="{Binding NewEpisodesCount}" PreviewTextInput="NumberValidationTextBox"/>
+                    <TextBox Text="{Binding NewEpisodesCount}" 
+                             PreviewTextInput="NumberValidationTextBox"/>
                     <TextBlock Text="Статус"/>
                     <StackPanel Orientation="Horizontal">
                         <RadioButton GroupName="Status" 
@@ -211,7 +214,9 @@
             <Button DockPanel.Dock="Top" Content="..." 
                     Command="{Binding ActivationAddTitleCommand}"
                     CommandParameter="{Binding}"/>
-            <ListView DockPanel.Dock="Bottom" ItemsSource="{Binding Title}">
+            <ListView SelectionChanged="ListView_SelectionChanged" 
+                      DockPanel.Dock="Bottom" 
+                      ItemsSource="{Binding Title}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>

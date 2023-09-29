@@ -44,6 +44,11 @@ namespace AnimeCheck.Model
             _titleParts = new List<TitlePart>();
         }
 
+        public List<TitlePart> GetTitleParts()
+        {
+            return _titleParts;
+        }
+
         public void Like()
         {
             _favorite = !_favorite;

@@ -17,6 +17,7 @@ namespace AnimeCheck.Commands
                 viewModel.VisibilityButtonAddTitle = Visibility.Visible;
                 viewModel.VisibilityAddTitlePart = Visibility.Hidden;
                 viewModel.IsEnabledNewNameTitle = true;
+                viewModel.NewNameTitle = "";
             }
         }
     }

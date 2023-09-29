@@ -114,9 +114,7 @@ namespace AnimeCheck.ViewModel
 
         public void Test()
         {
-            List<TitlePart> titleParts = TitleRepo.GetWithPlanned()[0].Viewed;
-            titleParts.AddRange(TitleRepo.GetWithPlanned()[0].Watch);
-            titleParts.AddRange(TitleRepo.GetWithPlanned()[0].Planned);
+            List<TitlePart> titleParts = TitleRepo.GetWithPlanned()[0].GetTitleParts();
             TitleParts = CollectionViewSource.GetDefaultView(titleParts);
         }
     }
