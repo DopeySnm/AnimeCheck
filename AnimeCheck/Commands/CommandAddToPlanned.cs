@@ -23,6 +23,7 @@ namespace AnimeCheck.Commands
             if(parameter is TitlePart titlePart)
             {
                 titlePart.Status = Status.Planned;
+                TitleRepo.SwichStatus(titlePart, Status.Planned);
             }
             items.Refresh();
         }
