@@ -31,7 +31,8 @@
                                 <Style TargetType="Label">
                                     <Setter Property="Foreground" Value="#FF9D9999"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=Btn}" Value="true">
+                                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=Btn}" 
+                                                     Value="true">
                                             <Setter Property="Foreground" Value="White"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource
@@ -88,23 +89,40 @@
             <RowDefinition Height="49"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="images/1.jpg"/>
-        </Grid.Background>-->
-        <Frame Grid.RowSpan="3" NavigationUIVisibility="Hidden" Content="{Binding CurPage}"/>
-        <DockPanel LastChildFill="True" Background="#4C000000">
-            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+        <Frame Grid.RowSpan="3" 
+               NavigationUIVisibility="Hidden" 
+               Content="{Binding CurPage}"/>
+        <DockPanel LastChildFill="True" 
+                   Background="#4C000000">
+            <StackPanel Orientation="Horizontal" 
+                        FlowDirection="RightToLeft">
                 <TextBlock HorizontalAlignment="Left"                        
-                        Height="21" TextWrapping="Wrap" Text="✖" VerticalAlignment="Top"
-                        Width="22" RenderTransformOrigin="1,0.488" FontSize="16"
-                        Foreground="#FFFF2300" Cursor="Hand" PreviewMouseDown="Exit"/>
+                           Height="21" 
+                           TextWrapping="Wrap"
+                           Text="✖"
+                           VerticalAlignment="Top"
+                           Width="22" 
+                           RenderTransformOrigin="1,0.488" 
+                           FontSize="16"
+                           Foreground="#FFFF2300" 
+                           Cursor="Hand" 
+                           PreviewMouseDown="Exit"/>
                 <TextBlock HorizontalAlignment="Left"
-                        Height="21" TextWrapping="Wrap" VerticalAlignment="Top" Width="22"
-                        RenderTransformOrigin="1,0.488" FontSize="18" Foreground="White" Cursor="Hand"
-                        PreviewMouseDown="Collapse" Text=" −" FontWeight="UltraBlack"/>
+                           Height="21" 
+                           TextWrapping="Wrap" 
+                           VerticalAlignment="Top" 
+                           Width="22"
+                           RenderTransformOrigin="1,0.488" 
+                           FontSize="18" Foreground="White" 
+                           Cursor="Hand"
+                           PreviewMouseDown="Collapse" 
+                           Text=" −" 
+                           FontWeight="UltraBlack"/>
             </StackPanel>
         </DockPanel>
-        <Grid Name="TopMenu" Grid.Row="1" Background="#4C000000">
+        <Grid Name="TopMenu" 
+              Grid.Row="1" 
+              Background="#4C000000">
             <StackPanel Orientation="Horizontal">
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" 
                         Width="80" 

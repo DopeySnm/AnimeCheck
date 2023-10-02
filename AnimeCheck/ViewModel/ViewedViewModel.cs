@@ -10,13 +10,17 @@ namespace AnimeCheck.ViewModel
 {
     public class ViewedViewModel : ViewModelBase
     {
+        private string filterText;
+        private ICollectionView titles;
+        public Title selectedTitle;
+        public TitlePart selectedPart;
+
         public ICommand AddToPlannedCommand { get; }
 
         public ICommand AddToWatchCommand { get; }
 
         public ICommand LikeCommand { get; }
 
-        private string filterText;
         public string FilterText
         {
             get { return filterText; }
@@ -28,21 +32,18 @@ namespace AnimeCheck.ViewModel
             }
         }
 
-        private ICollectionView titles;
         public ICollectionView Titles
         {
             get { return titles; }
             set { Set(ref titles, value); }
         }
 
-        public Title selectedTitle;
         public Title SelectedTitle 
         {
             get { return selectedTitle;}
             set { Set(ref selectedTitle, value); }
         }
-
-        public TitlePart selectedPart;
+        
         public TitlePart SelectedPart
         {
             get { return selectedPart; }
