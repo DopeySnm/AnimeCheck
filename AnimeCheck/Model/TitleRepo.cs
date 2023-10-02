@@ -48,5 +48,11 @@ namespace AnimeCheck.Model
             part.Status = status;
             _executor.SaveData(Ttitles);
         }
+
+        public static void Like(Title title)
+        {
+            title.Like();
+            _executor.SaveData(Ttitles);
+        }
     }
 }

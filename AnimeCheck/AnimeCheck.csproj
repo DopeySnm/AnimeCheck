@@ -91,6 +91,7 @@
     <Compile Include="Commands\CommandDeleteTitle.cs" />
     <Compile Include="Commands\CommandDeleteTitlePart.cs" />
     <Compile Include="Commands\CommandLike.cs" />
+    <Compile Include="Converters\LikeToVisibilityConverter.cs" />
     <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Model\Executor.cs" />
     <Compile Include="Model\FileExecutor.cs" />

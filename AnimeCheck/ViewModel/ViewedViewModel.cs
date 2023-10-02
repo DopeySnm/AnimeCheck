@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Data;
 using System.Windows.Input;
 using AnimeCheck.Commands;
+using System.Collections.ObjectModel;
 
 namespace AnimeCheck.ViewModel
 {
@@ -67,6 +68,7 @@ namespace AnimeCheck.ViewModel
             String storingValueInSearchString = "";
             //todo получать лист просмотренных аниме
             List<Title> anime = TitleRepo.GetWithViewed();
+
 
             Titles = CollectionViewSource.GetDefaultView(anime);
             Titles.Filter = FilterNameAnime;

@@ -9,7 +9,7 @@ namespace AnimeCheck.Model
 
         [JsonProperty] public string Name { get; private set; }
 
-        [JsonProperty] private bool _favorite;
+        [JsonProperty] public bool Favorite { get; private set; }
 
         [JsonProperty] private List<TitlePart> _titleParts;
 
@@ -39,7 +39,7 @@ namespace AnimeCheck.Model
         {
             ID = id;
             Name = name;
-            _favorite = false;
+            Favorite = false;
             _titleParts = new List<TitlePart>();
         }
 
@@ -50,7 +50,7 @@ namespace AnimeCheck.Model
 
         public void Like()
         {
-            _favorite = !_favorite;
+            Favorite = !Favorite;
         }
 
         public void AddPart(TitlePart part)
