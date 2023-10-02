@@ -14,6 +14,8 @@ namespace AnimeCheck.ViewModel
 
         public ICommand AddToViewedCommand { get; }
 
+        public ICommand LikeCommand { get; }
+
         private ICollectionView titles;
         public ICollectionView Titles
         {
@@ -44,6 +46,7 @@ namespace AnimeCheck.ViewModel
             Titles = CollectionViewSource.GetDefaultView(titles);
             AddToPlannedCommand = new CommandAddToPlanned(Titles);
             AddToViewedCommand = new CommandAddToViewed(Titles);
+            LikeCommand = new CommandLike(Titles);
         }
     }
 }

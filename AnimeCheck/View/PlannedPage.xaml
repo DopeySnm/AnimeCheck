@@ -187,6 +187,8 @@
                 <ColumnDefinition Width="130"/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource ButtonAny}" 
+                    Command="{Binding LikeCommand}"
+                    CommandParameter="{Binding SelectedAnime}"
                     Grid.Column="0" 
                     Content="♥"/>
             
