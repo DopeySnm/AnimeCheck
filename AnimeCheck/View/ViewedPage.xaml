@@ -14,7 +14,7 @@
         <vm:ViewedViewModel />
     </Page.DataContext>
     <Page.Resources>
-        <converter:LikeToVisibilityConverter x:Key="LikeToVisibilityConve"/>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConv"/>
         <Style x:Key="TextBoxAny" TargetType="TextBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="#00000000"/>
@@ -113,7 +113,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <ControlTemplate x:Key="SimpleExpanderButtonTemp" 
+        <!--<ControlTemplate x:Key="SimpleExpanderButtonTemp" 
              TargetType="{x:Type ToggleButton}">
             <Border x:Name="ExpanderButtonBorder"
                     Background="{TemplateBinding Background}"
@@ -125,7 +125,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <!--<Rectangle Fill="Transparent"
+                    --><!--<Rectangle Fill="Transparent"
                             Grid.ColumnSpan="2"/>
                     <Ellipse Name="Circle"
                             Grid.Column="0"
@@ -147,7 +147,7 @@
                         <Path.RenderTransform>
                             <RotateTransform Angle="0"/>
                         </Path.RenderTransform>
-                    </Path>-->
+                    </Path>--><!--
                     <ContentPresenter 
                         x:Name="HeaderContent"
                         Grid.Column="1"
@@ -156,7 +156,7 @@
                 </Grid>
             </Border>
             <ControlTemplate.Triggers>
-                <!--Change the sign to minus when toggled-->
+                --><!--Change the sign to minus when toggled-->
                 <!--
                 <Trigger Property="IsChecked" Value="True">
                     <Setter Property="Data" TargetName="Sign" Value="M 0,5 H 10 Z"/>
@@ -172,7 +172,7 @@
                     <Setter Property="Stroke" Value="#FF526C7B" TargetName="Circle"/>
                     <Setter Property="StrokeThickness" Value="1.5" TargetName="Circle"/>
                     <Setter Property="Stroke" Value="#FF003366" TargetName="Sign"/>
-                </Trigger>-->
+                </Trigger>--><!--
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <ControlTemplate x:Key="SimpleExpanderTemp" TargetType="{x:Type Expander}">
@@ -196,7 +196,7 @@
                             Value="Visible"/>
                 </Trigger>
             </ControlTemplate.Triggers>
-        </ControlTemplate>
+        </ControlTemplate>-->
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -227,19 +227,59 @@
             <Grid Background="#4C000000">
                 <TextBox Style="{StaticResource TextBoxAny}" 
                          Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-                         Width="700" 
+                         Width="830" 
                          FontSize="25"/>
             </Grid>
-            <Button x:Name="AddButton" 
-                    Style="{StaticResource ButtonAdd}" 
-                    Command="{Binding ExpandedCommand}"
-                    Grid.Column="3" 
-                    Content="Добавить"  
-                    Width="130"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="3">
-            <DockPanel LastChildFill="True">
-                <!--<Expander x:Name="MyExpander" 
+            <TreeView x:Name="AnimeList"
+                          DockPanel.Dock="Right"
+                          ItemsSource="{Binding Titles}"
+                          SelectedItemChanged="TreeView_OnSelectedItemChanged"
+                          Foreground="White"
+                          FontSize="28"
+                          Background="#4C000000"
+                          BorderBrush="#FFABADB3">
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                         Color="#26FFFFFF" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" 
+                                         Color="#26FFFFFF" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
+                                         Color="#26FFFFFF" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" 
+                                         Color="#26FFFFFF" />
+                </TreeView.Resources>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Viewed}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="600"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                    Grid.Column="0"
+                                    Style="{StaticResource TextBlockAny}"
+                                    Text="♥" 
+                                    Foreground="Red"
+                                    Visibility="{Binding Favorite, Converter={StaticResource BoolToVisibilityConv}}"/>
+                            <TextBlock Grid.Column="1"
+                                    Text="{Binding Name}" 
+                                    Style="{StaticResource TextBlockAny}"/>
+                        </Grid>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock 
+                                            Style="{StaticResource TextBlockAny}"        
+                                            Text="{Binding Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+            <!--<Expander x:Name="MyExpander" 
                           Template="{StaticResource SimpleExpanderTemp}"
                           IsExpanded="{Binding IsExpanded}"
                           Foreground="White" 
@@ -287,60 +327,12 @@
                         </StackPanel>
                     </Grid>
                 </Expander>-->
-                <TreeView x:Name="AnimeList"
-                          DockPanel.Dock="Right"
-                          ItemsSource="{Binding Titles}"
-                          SelectedItemChanged="TreeView_OnSelectedItemChanged"
-                          Foreground="White"
-                          FontSize="28"
-                          Background="#4C000000"
-                          BorderBrush="#FFABADB3">
-                    <TreeView.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                                         Color="#26FFFFFF" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" 
-                                         Color="#26FFFFFF" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
-                                         Color="#26FFFFFF" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" 
-                                         Color="#26FFFFFF" />
-                    </TreeView.Resources>
-                    <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Viewed}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
-                                    <ColumnDefinition Width="600"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock 
-                                    Grid.Column="0"
-                                    Style="{StaticResource TextBlockAny}"
-                                    Text="♥" 
-                                    Foreground="Red"
-                                    Visibility="{Binding Favorite, Converter={StaticResource LikeToVisibilityConve}}"/>
-                                <TextBlock Grid.Column="1"
-                                    Text="{Binding Name}" 
-                                    Style="{StaticResource TextBlockAny}"/>
-                            </Grid>
-                            <HierarchicalDataTemplate.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <TextBlock 
-                                            Style="{StaticResource TextBlockAny}"        
-                                            Text="{Binding Name}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </HierarchicalDataTemplate.ItemTemplate>
-                        </HierarchicalDataTemplate>
-                    </TreeView.ItemTemplate>
-                </TreeView>
-            </DockPanel>
         </Grid>
         <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="385"/>
-                <ColumnDefinition Width="385"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="450"/>
                 <ColumnDefinition Width="130"/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource ButtonAny}" 
@@ -358,11 +350,6 @@
                     CommandParameter="{Binding}"
                     Grid.Column="2" 
                     Content="Доавить в смотрю"/>
-            <Button Style="{StaticResource ButtonDelete}" 
-                    Command="{Binding DeleteAnimeCommand}"
-                    CommandParameter="{Binding}"
-                    Grid.Column="4" 
-                    Content="Удалить"/>
         </Grid>
     </Grid>
 </Page>

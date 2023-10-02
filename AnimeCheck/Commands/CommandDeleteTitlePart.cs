@@ -1,11 +1,7 @@
 ﻿using AnimeCheck.Model;
 using AnimeCheck.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace AnimeCheck.Commands
@@ -22,10 +18,13 @@ namespace AnimeCheck.Commands
         {
             if (parameter is AdditionViewModel viewModel)
             {
-                TitleRepo.DeletePart(viewModel.SelectedSeason);
-                List<TitlePart> titles = viewModel.SelectedAnime.GetTitleParts();
-                items = CollectionViewSource.GetDefaultView(titles);
-                items.Refresh();
+                if (viewModel.SelectedParts != null)
+                {
+                    TitleRepo.DeletePart(viewModel.SelectedParts);
+                    List<TitlePart> titles = viewModel.SelectedTitle.GetTitleParts();
+                    items = CollectionViewSource.GetDefaultView(titles);
+                    items.Refresh();
+                }
             }
         }
     }

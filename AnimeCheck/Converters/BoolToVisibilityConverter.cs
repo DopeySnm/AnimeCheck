@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace AnimeCheck.Converters
 {
-    public class LikeToVisibilityConverter : IValueConverter
+    public class BoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

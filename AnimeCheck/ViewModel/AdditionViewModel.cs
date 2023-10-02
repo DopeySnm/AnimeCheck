@@ -1,10 +1,7 @@
 ﻿using AnimeCheck.Model;
-using System.Collections.Generic;
 using System.ComponentModel;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows;
 using AnimeCheck.Commands;
 using System;
 
@@ -12,7 +9,7 @@ namespace AnimeCheck.ViewModel
 {
     public class AdditionViewModel : ViewModelBase
     {
-        public ICommand ExpandedCommand { get { return new RelayCommand(() => IsExpanded = !IsExpanded); } }
+        public ICommand ExpandedAddTitlePartCommand { get; }
 
         public ICommand ActivationAddTitleCommand { get; }
 
@@ -38,46 +35,32 @@ namespace AnimeCheck.ViewModel
             set { Set(ref title, value); }
         }
 
-        public Title selectedAnime;
-        public Title SelectedAnime
+        public Title selectedTitle;
+        public Title SelectedTitle
         {
-            get { return selectedAnime; }
-            set { Set(ref selectedAnime, value); }
+            get { return selectedTitle; }
+            set { Set(ref selectedTitle, value); }
         }
 
-        public TitlePart selectedSeason;
-        public TitlePart SelectedSeason
+        public TitlePart selectedParts;
+        public TitlePart SelectedParts
         {
-            get { return selectedSeason; }
-            set { Set(ref selectedSeason, value); }
+            get { return selectedParts; }
+            set { Set(ref selectedParts, value); }
         }
 
-        public Visibility visibilityButtonAddTitle;
-        public Visibility VisibilityButtonAddTitle
+        private bool addMode;
+        public bool AddMode
         {
-            get { return visibilityButtonAddTitle; }
-            set { Set(ref visibilityButtonAddTitle, value); }
+            get { return addMode; }
+            set { Set(ref addMode, value); }
         }
 
-        public Visibility visibilityAddTitlePart;
-        public Visibility VisibilityAddTitlePart
+        private bool isExpandedAddTitlePart;
+        public bool IsExpandedAddTitlePart
         {
-            get { return visibilityAddTitlePart; }
-            set { Set(ref visibilityAddTitlePart, value); }
-        }
-
-        public bool isEnabledNewNameTitle;
-        public bool IsEnabledNewNameTitle
-        {
-            get { return isEnabledNewNameTitle; }
-            set { Set(ref isEnabledNewNameTitle, value); }
-        }
-
-        private bool isExpanded;
-        public bool IsExpanded
-        {
-            get { return isExpanded; }
-            set { Set(ref isExpanded, value); }
+            get { return isExpandedAddTitlePart; }
+            set { Set(ref isExpandedAddTitlePart, value); }
         }
 
         private string newNameTitle;
@@ -118,11 +101,11 @@ namespace AnimeCheck.ViewModel
         public AdditionViewModel()
         {
             Title = CollectionViewSource.GetDefaultView(TitleRepo.Ttitles);
-            VisibilityButtonAddTitle = Visibility.Hidden;
-            VisibilityAddTitlePart = Visibility.Visible;
+            AddMode = false;
             AddTitleCommand = new CommandAddTitle();
             ActivationAddTitleCommand = new CommandActivationAddTitle();
             AddTitlePartCommand = new CommandAddTitlePart();
+            ExpandedAddTitlePartCommand = new CommandExpandedAddTitlePart();
             DeleteTitleCommand = new CommandDeleteTitle(Title);
             DeleteTitlePartCommand = new CommandDeleteTitlePart(Title);
         }

@@ -11,10 +11,12 @@ namespace AnimeCheck.Model
         {
             return Ttitles.FindAll(title => title.Viewed.Count > 0);
         }
+
         public static List<Title> GetWithWatch()
         {
             return Ttitles.FindAll(title => title.Watch.Count > 0);;
         }
+
         public static List<Title> GetWithPlanned()
         {
             return Ttitles.FindAll(title => title.Planned.Count > 0);;
@@ -25,6 +27,7 @@ namespace AnimeCheck.Model
             Ttitles.Add(title);
             _executor.SaveData(Ttitles);
         }
+
         public static void DeleteTitle(Title title)
         {
             Ttitles.Remove(title);

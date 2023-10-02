@@ -1,5 +1,4 @@
 ﻿using AnimeCheck.Model;
-using AnimeCheck.ViewModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -18,10 +17,13 @@ namespace AnimeCheck.Commands
         {
             if (parameter is Title title)
             {
-                TitleRepo.DeleteTitle(title);
-                List<Title> titles = TitleRepo.Ttitles;
-                items = CollectionViewSource.GetDefaultView(titles);
-                items.Refresh();
+                if (title != null)
+                {
+                    TitleRepo.DeleteTitle(title);
+                    List<Title> titles = TitleRepo.Ttitles;
+                    items = CollectionViewSource.GetDefaultView(titles);
+                    items.Refresh();
+                }
             }
         }
     }

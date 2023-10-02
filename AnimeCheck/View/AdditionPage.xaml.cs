@@ -31,7 +31,7 @@ namespace AnimeCheck.View
             var listView = e.OriginalSource as ListView;
             if (listView.SelectedItem is TitlePart titlePart)
             {
-                viewModel.SelectedSeason = titlePart;
+                viewModel.SelectedParts = titlePart;
             }
         }
         private void ListView_SelectionChangedTitle(object sender, SelectionChangedEventArgs e)
@@ -40,13 +40,12 @@ namespace AnimeCheck.View
             var listView = e.OriginalSource as ListView;
             if (listView.SelectedItem is Title title)
             {
-                viewModel.SelectedAnime = title;
+                viewModel.SelectedTitle = title;
                 viewModel.NewNameTitle = title.Name;
                 List<TitlePart> titlePart = title.GetTitleParts();
                 viewModel.TitleParts = CollectionViewSource.GetDefaultView(titlePart);
-                viewModel.VisibilityButtonAddTitle = Visibility.Hidden;
-                viewModel.VisibilityAddTitlePart = Visibility.Visible;
-                viewModel.IsEnabledNewNameTitle = false;
+                viewModel.AddMode = false;
+                listView.SelectedItem = null;
             }
         }
     }

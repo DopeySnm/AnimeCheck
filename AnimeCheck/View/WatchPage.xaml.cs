@@ -29,11 +29,11 @@ namespace AnimeCheck.View
 
             if (e.NewValue is Title title)
             {
-                viewModel.SelectedAnime = (Title)e.NewValue;
+                viewModel.SelectedTitle = (Title)e.NewValue;
             }
             else if (e.NewValue is TitlePart titlePart)
             {
-                viewModel.SelectedSeason = (TitlePart)e.NewValue;
+                viewModel.SelectedPart = (TitlePart)e.NewValue;
             }
         }
     }

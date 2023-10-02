@@ -1,24 +1,18 @@
 using AnimeCheck.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Data;
 using System.Windows.Input;
 using AnimeCheck.Commands;
-using System.Collections.ObjectModel;
+using AnimeCheck.Service;
 
 namespace AnimeCheck.ViewModel
 {
     public class ViewedViewModel : ViewModelBase
     {
-        public ICommand DeleteAnimeCommand { get; }
-
         public ICommand AddToPlannedCommand { get; }
 
         public ICommand AddToWatchCommand { get; }
-
-        public ICommand ExpandedCommand { get { return new RelayCommand(() => IsExpanded = !IsExpanded); } }
 
         public ICommand LikeCommand { get; }
 
@@ -34,13 +28,6 @@ namespace AnimeCheck.ViewModel
             }
         }
 
-        private bool isExpanded;
-        public bool IsExpanded
-        {
-            get { return isExpanded; }
-            set { Set(ref isExpanded, value); }
-        }
-
         private ICollectionView titles;
         public ICollectionView Titles
         {
@@ -48,52 +35,34 @@ namespace AnimeCheck.ViewModel
             set { Set(ref titles, value); }
         }
 
-        public Title selectedAnime;
-        public Title SelectedAnime 
+        public Title selectedTitle;
+        public Title SelectedTitle 
         {
-            get { return selectedAnime;}
-            set { Set(ref selectedAnime, value); }
+            get { return selectedTitle;}
+            set { Set(ref selectedTitle, value); }
         }
 
-        public TitlePart selectedSeason;
-        public TitlePart SelectedSeason
+        public TitlePart selectedPart;
+        public TitlePart SelectedPart
         {
-            get { return selectedSeason; }
-            set { Set(ref selectedSeason, value); }
+            get { return selectedPart; }
+            set { Set(ref selectedPart, value); }
         }
         
         public ViewedViewModel()
         {
-            //todo получаеть запоминаемый текст в поиске
-            String storingValueInSearchString = "";
-            //todo получать лист просмотренных аниме
-            List<Title> anime = TitleRepo.GetWithViewed();
-
-
-            Titles = CollectionViewSource.GetDefaultView(anime);
+            List<Title> titles = TitleRepo.GetWithViewed();
+            Titles = CollectionViewSource.GetDefaultView(titles);
             Titles.Filter = FilterNameAnime;
-            DeleteAnimeCommand = new CommandDeleteTitle(Titles);
-            AddToPlannedCommand = new CommandAddToPlanned(Titles);
-            AddToWatchCommand = new CommandAddToWatch(Titles);
-            LikeCommand = new CommandLike(Titles);
-            FilterText = storingValueInSearchString;
+            AddToPlannedCommand = new CommandAddToPlanned();
+            AddToWatchCommand = new CommandAddToWatch();
+            LikeCommand = new CommandLike();
         }
 
         private bool FilterNameAnime(object obj)
         {
-            bool result = true;
-            Title current = obj as Title;
-            if (!string.IsNullOrWhiteSpace(FilterText) && current != null && !ContainsCaseInsensitive(current.Name, FilterText))
-            {
-                result = false;
-            }
-            //todo устанавливать запоминаемый текст в поиске
-            return result;
-        }
-
-        private bool ContainsCaseInsensitive(string source, string substring)
-        {
-            return source?.IndexOf(substring, StringComparison.OrdinalIgnoreCase) > -1;
+            FilterHelper filterHelper = new FilterHelper();
+            return filterHelper.FilterSearch(obj, FilterText);
         }
     }
 }

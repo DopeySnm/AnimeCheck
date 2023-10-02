@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using AnimeCheck.Commands;
 using AnimeCheck.Model;
+using AnimeCheck.Service;
 
 namespace AnimeCheck.ViewModel
 {
@@ -16,6 +17,18 @@ namespace AnimeCheck.ViewModel
 
         public ICommand LikeCommand { get; }
 
+        private string filterText;
+        public string FilterText
+        {
+            get { return filterText; }
+            set
+            {
+                Set(ref filterText, value);
+                Titles.Filter = null;
+                Titles.Filter = FilterNameAnime;
+            }
+        }
+
         private ICollectionView titles;
         public ICollectionView Titles
         {
@@ -26,27 +39,34 @@ namespace AnimeCheck.ViewModel
             }
         }
 
-        public Title selectedAnime;
-        public Title SelectedAnime
+        public Title selectedTitle;
+        public Title SelectedTitle
         {
-            get { return selectedAnime; }
-            set { Set(ref selectedAnime, value); }
+            get { return selectedTitle; }
+            set { Set(ref selectedTitle, value); }
         }
 
-        public TitlePart selectedSeason;
-        public TitlePart SelectedSeason
+        public TitlePart selectedPart;
+        public TitlePart SelectedPart
         {
-            get { return selectedSeason; }
-            set { Set(ref selectedSeason, value); }
+            get { return selectedPart; }
+            set { Set(ref selectedPart, value); }
         }
 
         public WatchViewModel() 
         {
             List<Title> titles = TitleRepo.GetWithWatch();
             Titles = CollectionViewSource.GetDefaultView(titles);
-            AddToPlannedCommand = new CommandAddToPlanned(Titles);
-            AddToViewedCommand = new CommandAddToViewed(Titles);
-            LikeCommand = new CommandLike(Titles);
+            Titles.Filter = FilterNameAnime;
+            AddToPlannedCommand = new CommandAddToPlanned();
+            AddToViewedCommand = new CommandAddToViewed();
+            LikeCommand = new CommandLike();
+        }
+
+        private bool FilterNameAnime(object obj)
+        {
+            FilterHelper filterHelper = new FilterHelper();
+            return filterHelper.FilterSearch(obj, FilterText);
         }
     }
 }

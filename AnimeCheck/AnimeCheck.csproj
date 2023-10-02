@@ -75,12 +75,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddAnime.xaml.cs">
-      <DependentUpon>AddAnime.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddTitle.xaml.cs">
-      <DependentUpon>AddTitle.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Commands\CommandActivationAddTitle.cs" />
     <Compile Include="Commands\CommandAddTitle.cs" />
     <Compile Include="Commands\CommandAddTitlePart.cs" />
@@ -90,8 +84,9 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandDeleteTitle.cs" />
     <Compile Include="Commands\CommandDeleteTitlePart.cs" />
+    <Compile Include="Commands\CommandExpandedAddTitlePart.cs" />
     <Compile Include="Commands\CommandLike.cs" />
-    <Compile Include="Converters\LikeToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Model\Executor.cs" />
     <Compile Include="Model\FileExecutor.cs" />
@@ -99,6 +94,7 @@
     <Compile Include="Model\ObjectModels\TitlePart.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="Model\TitleRepo.cs" />
+    <Compile Include="Service\FilterHelper.cs" />
     <Compile Include="ViewModel\AdditionViewModel.cs" />
     <Compile Include="ViewModel\PlannedViewModel.cs" />
     <Compile Include="ViewModel\ViewedViewModel.cs" />
@@ -120,8 +116,6 @@
     <Compile Include="View\PlannedPage.xaml.cs">
       <DependentUpon>PlannedPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddAnime.xaml" />
-    <Page Include="AddTitle.xaml" />
     <Page Include="View\AdditionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,7 +192,13 @@
     <Resource Include="View\images\5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="resources\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\images\back2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\images\back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,11 +10,11 @@ namespace AnimeCheck.Commands
             if (parameter is AdditionViewModel viewModel)
             {
                 if (viewModel.NewNameTitlePart == null) return;
-                if (viewModel.SelectedAnime == null) return;
-                viewModel.IsExpanded = false;
+                if (viewModel.SelectedTitle == null) return;
+                viewModel.IsExpandedAddTitlePart = false;
                 var id = 1;
                 //todo Доделать генератор айдишников
-                var idTitle = viewModel.SelectedAnime.ID;
+                var idTitle = viewModel.SelectedTitle.ID;
                 var name = viewModel.NewNameTitlePart;
                 viewModel.NewNameTitlePart = null;
                 var episodesCount = viewModel.NewEpisodesCount;

@@ -1,9 +1,4 @@
 ﻿using AnimeCheck.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AnimeCheck.Commands
@@ -14,10 +9,12 @@ namespace AnimeCheck.Commands
         {
             if (parameter is AdditionViewModel viewModel)
             {
-                viewModel.VisibilityButtonAddTitle = Visibility.Visible;
-                viewModel.VisibilityAddTitlePart = Visibility.Hidden;
-                viewModel.IsEnabledNewNameTitle = true;
+                //viewModel.VisibilityAddTitlePart = Visibility.Hidden;
+                viewModel.AddMode = true;
                 viewModel.NewNameTitle = "";
+                viewModel.SelectedTitle = null;
+                viewModel.SelectedParts = null;
+                viewModel.TitleParts = null;
             }
         }
     }

@@ -13,6 +13,7 @@
 
     <Page.Resources>
         <converter:RadioButtonCheckedConverter x:Key="RadioButtonConv"/>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConv"/>
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="18" />
@@ -152,12 +153,12 @@
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0" 
                              Text="{Binding NewNameTitle}" 
-                             IsEnabled="{Binding IsEnabledNewNameTitle}"/>
+                             IsEnabled="{Binding AddMode}"/>
                     <Button Grid.Column="1" 
                             Content="Добавить" 
                             Command="{Binding AddTitleCommand}" 
                             CommandParameter="{Binding}" 
-                            Visibility="{Binding VisibilityButtonAddTitle}"/>
+                            Visibility="{Binding AddMode, Converter={StaticResource BoolToVisibilityConv}}"/>
                 </Grid>
                 <TextBlock Text="Части"/>
                 <ListView ItemsSource="{Binding TitleParts}"
@@ -172,12 +173,11 @@
                         Command="{Binding DeleteTitlePartCommand}"
                         CommandParameter="{Binding}"/>
                 <Button Content="Добавить Часть" 
-                        Command="{Binding ExpandedCommand}"
-                        Visibility="{Binding VisibilityAddTitlePart}"/>
+                        Command="{Binding ExpandedAddTitlePartCommand}"
+                        CommandParameter="{Binding}"/>
             </StackPanel>
             <Expander Template="{StaticResource SimpleExpanderTemp}" 
-                      IsExpanded="{Binding IsExpanded}"
-                      Visibility="{Binding VisibilityAddTitlePart}">
+                      IsExpanded="{Binding IsExpandedAddTitlePart}">
                 <StackPanel>
                     <TextBlock Text="Часть"/>
                     <TextBlock Text="Название"/>
@@ -224,7 +224,7 @@
             <Button DockPanel.Dock="Top" 
                     Content="Удалить" 
                     Command="{Binding DeleteTitleCommand}" 
-                    CommandParameter="{Binding SelectedAnime}"/>
+                    CommandParameter="{Binding SelectedTitle}"/>
             <ListView SelectionChanged="ListView_SelectionChangedTitle" 
                       DockPanel.Dock="Bottom" 
                       ItemsSource="{Binding Title}">

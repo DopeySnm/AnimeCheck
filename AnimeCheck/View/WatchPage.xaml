@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimeCheck.View"
       xmlns:vm="clr-namespace:AnimeCheck.ViewModel"
+      xmlns:converter="clr-namespace:AnimeCheck.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="WatchPage">
@@ -13,6 +14,7 @@
         <vm:WatchViewModel />
     </Page.DataContext>
     <Page.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConv"/>
         <Style x:Key="TextBoxAny" TargetType="TextBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="#00000000"/>
@@ -131,14 +133,21 @@
             <ImageBrush ImageSource="images/5.jpg"/>
         </Grid.Background>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-            <TextBlock Foreground="White" TextAlignment="Center" Text="Поиск:" FontSize="28" Background="#4C000000" Width="127"/>
-            <TextBox Foreground="White" Width="822" FontSize="28" Background="#4C000000" BorderBrush="#FFABADB3"/>
+            <Grid Background="#4C000000">
+                <TextBlock Style="{StaticResource TextBlockAny}" 
+                           TextAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           Text="Поиск" 
+                           Width="120"/>
+            </Grid>
+            <Grid Background="#4C000000">
+                <TextBox Style="{StaticResource TextBoxAny}" 
+                         Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+                         Width="830" 
+                         FontSize="25"/>
+            </Grid>
         </StackPanel>
-          <Grid Grid.Column="1" Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="173*"/>
-                <RowDefinition Height="17*"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="3">
             <TreeView x:Name="AnimeList"
                           DockPanel.Dock="Right"
                           ItemsSource="{Binding Titles}"
@@ -161,22 +170,25 @@
                     <HierarchicalDataTemplate ItemsSource="{Binding Path=Watch}">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
                                 <ColumnDefinition Width="600"/>
-                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Name}" 
-                                           Style="{StaticResource TextBlockAny}" 
-                                           Grid.Column="0"/>
+                            <TextBlock 
+                                    Grid.Column="0"
+                                    Style="{StaticResource TextBlockAny}"
+                                    Text="♥" 
+                                    Foreground="Red"
+                                    Visibility="{Binding Favorite, Converter={StaticResource BoolToVisibilityConv}}"/>
+                            <TextBlock Grid.Column="1"
+                                    Text="{Binding Name}" 
+                                    Style="{StaticResource TextBlockAny}"/>
                         </Grid>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="680"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Style="{StaticResource TextBlockAny}" 
-                                                   Text="{Binding Name}" 
-                                                   Grid.Column="0"/>
+                                    <TextBlock 
+                                            Style="{StaticResource TextBlockAny}"        
+                                            Text="{Binding Name}" />
                                 </Grid>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
@@ -187,28 +199,25 @@
         <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="385"/>
-                <ColumnDefinition Width="385"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="450"/>
                 <ColumnDefinition Width="130"/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding LikeCommand}"
-                    CommandParameter="{Binding SelectedAnime}"
+                    CommandParameter="{Binding}"
                     Grid.Column="0" 
                     Content="♥"/>
             <Button Style="{StaticResource ButtonAny}" 
-                    Command="{Binding Path=AddToPlannedCommand}" 
-                    CommandParameter="{Binding}"
-                    Grid.Column="1" 
-                    Content="Доавить в запланировано"/>
-            <Button Style="{StaticResource ButtonAny}" 
                     Command="{Binding Path=AddToViewedCommand}" 
                     CommandParameter="{Binding}"
-                    Grid.Column="2" 
+                    Grid.Column="1" 
                     Content="Доавить в просмотренно"/>
-            <Button Style="{StaticResource ButtonDelete}" 
-                    Grid.Column="4" 
-                    Content="Удалить"/>
+            <Button Style="{StaticResource ButtonAny}" 
+                    Command="{Binding Path=AddToPlannedCommand}" 
+                    CommandParameter="{Binding}"
+                    Grid.Column="2" 
+                    Content="Доавить в запланировано"/>
         </Grid>
     </Grid>
 </Page>
